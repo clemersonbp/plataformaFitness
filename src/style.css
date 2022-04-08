@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0f2f5;
+  height: 100vh;
+  color: #1b1474;
+}
+
+body, input, textarea, button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  font-weight: 600;
+}
+
+button, a {
+  cursor: pointer;
+  color: #fff;
+  background-color: #1b1474;
+  border-radius: 5px;
+  height: 40px;
+  width: 120px;
+  border: none;
+  text-align: center;
+  align-items: flex-start;
+  font-size: .9rem;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 9px 0; 
+}
+
+[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  height: 130px;
+  max-width: 800px;
+  margin: auto;
+  padding: 15px 25px;
+}
+
+.header img {
+  width: 150px;
+}
+
+.header__links {
+  width: 120px;
+  height: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.content {
+  max-width: 800px;
+  padding: 0 25px;
+  margin: 70px auto;
+}
+
+.content h2 {
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+}
+
+.content__top {
+  max-width: 800px;
+  margin: 70px auto;
+}
+
+.content__bottom {
+  margin-top: 30px;
+}
+
+.content__bottom button{
+  margin-right: 10px;
+}
+
+.content__selects {
+  margin-top: 10px;
+}
+
+.selects {
+  width: 100%;
+  height: 30px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.btn {
+  width: 100%;
+  height: 40px;
+  margin-top: 5px;
+}
+
+.footer {
+  width: 100%;
+  padding: 10px;
+  font-size: .9rem;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+
+
+/* Inscrever-se */
+
+.content__cadastro {
+  margin-top: 100px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.content__links {
+  width: 140px;
+  height: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.content__links a {
+  width: 140px;
+}
+
+/* Cadastro Cliente */
+
+.contentCad {
+  max-width: 800px;
+  padding: 0 25px 30px ;
+  margin: auto;
+}
+
+.contentCad h3 {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+}
+
+.contentCad input{
+  width: 100%;
+  max-width: 800px;
+  height: 35px;
+  padding-left: 5px;
+  border-radius: 5px;
+  margin: 5px auto;
+}
+
+div.boxtermos {
+  text-align: center;
+  margin: 10px 0;
+}
+
+input.termos{
+  width: 12px;
+  height: 12px;
+}
