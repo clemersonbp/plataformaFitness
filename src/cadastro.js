@@ -110,7 +110,7 @@ uf.addEventListener('keyup', () => {
 })
 
 var btnCadastrar = document.querySelector("#btnCadastrar");
-btnCadastrar.addEventListener("click", function (){
+btnCadastrar.addEventListener("click", function () {
   cadastrar();
 });
 
@@ -120,69 +120,46 @@ function cadastrar() {
     && validCep && validComplemento && validBairro && validCidade
     && validUf) {
 
-    //let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]')
     let listaUser = {}
 
-    // listaUser.push(
-    //   {
-    //     nomeCad: nome.value,
-    //     sobrenomeCad: sobrenome.value,
-    //     cpfCad: cpf.value,
-    //     telefoneCad: telefone.value,
-    //     emailCad: email.value,
-    //     senhaCad: senha.value,
-    //     enderecoCad: endereco.value,
-    //     numeroResiCad: numeroResi.value,
-    //     cepCad: cep.value,
-    //     complementoCad: senha.value,
-    //     bairroCad: bairro.value,
-    //     cidadeCad: cidade.value,
-    //     ufCad: uf.value
-    //   }
-    // )
+    listaUser =
+    {
+      nomeCad: nome.value,
+      sobrenomeCad: sobrenome.value,
+      cpfCad: cpf.value,
+      telefoneCad: telefone.value,
+      emailCad: email.value,
+      senhaCad: senha.value,
+      enderecoCad: endereco.value,
+      numeroResiCad: numeroResi.value,
+      cepCad: cep.value,
+      complementoCad: senha.value,
+      bairroCad: bairro.value,
+      cidadeCad: cidade.value,
+      ufCad: uf.value
+    };
 
-    listaUser = 
-      {
-        nomeCad: nome.value,
-        sobrenomeCad: sobrenome.value,
-        cpfCad: cpf.value,
-        telefoneCad: telefone.value,
-        emailCad: email.value,
-        senhaCad: senha.value,
-        enderecoCad: endereco.value,
-        numeroResiCad: numeroResi.value,
-        cepCad: cep.value,
-        complementoCad: senha.value,
-        bairroCad: bairro.value,
-        cidadeCad: cidade.value,
-        ufCad: uf.value
-      };
-    
     console.log(listaUser)
-    
+
     //CREATES DE DOCUMENT ON DATABASE TEST
     //CALL A SEPARATE CLASS ON THE FIREBASE JS BEFORE SENDING TO THE DB
 
     createClient(listaUser);
 
-    //localStorage.setItem('listaUser', JSON.stringify(listaUser))
+    msgSuccess.setAttribute('style', 'display: block')
+    msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>'
+    msgError.setAttribute('style', 'display: none')
+    msgError.innerHTML = ''
 
-
-    // msgSuccess.setAttribute('style', 'display: block')
-    // msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>'
-    // msgError.setAttribute('style', 'display: none')
-    // msgError.innerHTML = ''
-
-    // setTimeout(() => {
-    //   window.location.href = 'https://cdpn.io/thicode/debug/ZELzYxV/dXAqBaRyvwJk'
-    // }, 3000)
+    setTimeout(() => {
+      window.location.href = './index.html'
+    }, 3000)
 
 
   } else {
-    alert("hello!")
-    // msgError.setAttribute('style', 'display: block')
-    // msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
-    // msgSuccess.innerHTML = ''
-    // msgSuccess.setAttribute('style', 'display: none')
+    msgError.setAttribute('style', 'display: block')
+    msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
+    msgSuccess.innerHTML = ''
+    msgSuccess.setAttribute('style', 'display: none')
   }
 }
