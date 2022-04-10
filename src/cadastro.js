@@ -1,3 +1,6 @@
+//IMPORT FUNCTIONS FROM FIREBASE/DATABASE FILE.
+import { createClient } from "./firebase.js"
+
 let nome = document.querySelector('#nome')
 let validNome = false
 
@@ -106,15 +109,39 @@ uf.addEventListener('keyup', () => {
   }
 })
 
+var btnCadastrar = document.querySelector("#btnCadastrar");
+btnCadastrar.addEventListener("click", function (){
+  cadastrar();
+});
+
 function cadastrar() {
   if (validNome && validSobrenome && validCpf && validTelefone
     && validEmail && validSenha && validEndereco && validNumeroResi
     && validCep && validComplemento && validBairro && validCidade
     && validUf) {
 
-    let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]')
+    //let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]')
+    let listaUser = {}
 
-    listaUser.push(
+    // listaUser.push(
+    //   {
+    //     nomeCad: nome.value,
+    //     sobrenomeCad: sobrenome.value,
+    //     cpfCad: cpf.value,
+    //     telefoneCad: telefone.value,
+    //     emailCad: email.value,
+    //     senhaCad: senha.value,
+    //     enderecoCad: endereco.value,
+    //     numeroResiCad: numeroResi.value,
+    //     cepCad: cep.value,
+    //     complementoCad: senha.value,
+    //     bairroCad: bairro.value,
+    //     cidadeCad: cidade.value,
+    //     ufCad: uf.value
+    //   }
+    // )
+
+    listaUser = 
       {
         nomeCad: nome.value,
         sobrenomeCad: sobrenome.value,
@@ -129,11 +156,16 @@ function cadastrar() {
         bairroCad: bairro.value,
         cidadeCad: cidade.value,
         ufCad: uf.value
-      }
-    )
+      };
+    
     console.log(listaUser)
+    
+    //CREATES DE DOCUMENT ON DATABASE TEST
+    //CALL A SEPARATE CLASS ON THE FIREBASE JS BEFORE SENDING TO THE DB
 
-    localStorage.setItem('listaUser', JSON.stringify(listaUser))
+    createClient(listaUser);
+
+    //localStorage.setItem('listaUser', JSON.stringify(listaUser))
 
 
     // msgSuccess.setAttribute('style', 'display: block')
