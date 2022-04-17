@@ -35,12 +35,18 @@ export function createClient(clientData) {
   addNewDocument(clientData);
 }
 
+//MIDLEWARE TO TREAT THE DATA BEFORE SENDINGO TROUGH THE DATABASE
+export function createProfessionalEsp(profEspData) {
+  addNewDocument(profEspData, profCollectionEsp);
+}
+
+//MIDLEWARE TO TREAT THE DATA BEFORE SENDINGO TROUGH THE DATABASE
+export function createProfessionalNut(profNutData) {
+  addNewDocument(profNutData, profCollectionNut);
+}
+
 //CREATE THE DOCUMENT ON THE FIREBASE DB
-async function addNewDocument(client) {
-  const newDoc = await addDoc(clientsCollection, client);
-  const newDocE = await addDoc(profCollectionEsp, client);
-  const newDocN = await addDoc(profCollectionNut, client);
+async function addNewDocument(data, collection) {
+  const newDoc = await addDoc(collection, data);
   console.log(`documento criado em ${newDoc.path}`);
-  console.log(`documento criado em ${newDocE.path}`);
-  console.log(`documento criado em ${newDocN.path}`);
 }
