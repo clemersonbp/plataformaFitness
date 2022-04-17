@@ -1,5 +1,5 @@
 //IMPORT FUNCTIONS FROM FIREBASE/DATABASE FILE.
-import { createClient } from "./firebase.js"
+import { createProfessionalNut } from "./firebase.js"
 
 let cref = document.querySelector('#cref')
 let validCref = false
@@ -84,7 +84,7 @@ function cadastrar() {
     //CREATES DE DOCUMENT ON DATABASE TEST
     //CALL A SEPARATE CLASS ON THE FIREBASE JS BEFORE SENDING TO THE DB
 
-    createClient(listaUserProfissionalNutriCadastro);
+    createProfessionalNut(listaUserProfissionalNutriCadastro);
 
     msgSuccess.setAttribute('style', 'display: block')
     msgSuccess.innerHTML = '<strong>Cadastrando Profissional...</strong>'
