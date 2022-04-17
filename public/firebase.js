@@ -24,15 +24,23 @@ const db = getFirestore(firebaseApp);
 //path to clients collection on firebase
 const clientsCollection = collection(db, 'clientes');
 
-//MIDLEWARE TO TREAT THE DATA BEFORE SENDINGO TROUGH THE DATABASE
-export function createClient(clientData){
-    addNewDocument(clientData);
-}
+//path to clients collection on firebase
+const profCollectionEsp = collection(db, 'profissionais A. Esportiva');
 
+//path to clients collection on firebase
+const profCollectionNut = collection(db, 'profissionais A. Nutricional');
+
+//MIDLEWARE TO TREAT THE DATA BEFORE SENDINGO TROUGH THE DATABASE
+export function createClient(clientData) {
+  addNewDocument(clientData);
+}
 
 //CREATE THE DOCUMENT ON THE FIREBASE DB
 async function addNewDocument(client) {
-    const newDoc = await addDoc(clientsCollection, client);
-    console.log(`documento criado em ${newDoc.path}`);
+  const newDoc = await addDoc(clientsCollection, client);
+  const newDocE = await addDoc(profCollectionEsp, client);
+  const newDocN = await addDoc(profCollectionNut, client);
+  console.log(`documento criado em ${newDoc.path}`);
+  console.log(`documento criado em ${newDocE.path}`);
+  console.log(`documento criado em ${newDocN.path}`);
 }
-
