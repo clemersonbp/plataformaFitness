@@ -177,7 +177,20 @@ span a {
   text-decoration: underline;
 }
 
-/*  mensagens de erro e sucess  */
+/*  Cadastro Assessorias  */
+
+#sobreMim {
+  width: 100%; 
+  height: 80px;
+}
+
+#experiencia {
+  width: 100%; 
+  height: 150px;
+}
+
+
+/*  mensagens de erro e success  */
 
 #msgError{
   text-align: center;
