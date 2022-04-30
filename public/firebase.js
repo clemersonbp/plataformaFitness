@@ -148,61 +148,35 @@ function writeDocument(newUserDocument, data) {
 /////////////////////////////////////////////////////LOGIN SYSTEM///////////////////////////////////////////////////////////////////////////////////
 
 export function login(user){
-  // var spanUserInfo = document.querySelector("#userInfo");
-   
-   // signInWithEmailAndPassword(auth, user.email, user.senha).then(async (data) =>{
-   //   console.log("entrei");
-   //   const uid = data.user.uid;
-   //   try{
-   //     const doc2 = await doc(clientsCollection + '/' +uid).get();
-   //     console.log(doc2.data());
-   //     //.innerHTML = JSON.stringify(doc.data());
-   //   }catch(e){
-   //     console.log(e);
-   //     //spanUserInfo.innerHTML = "Error"
-   //   }
-   // })
  
-   signInWithEmailAndPassword(auth, user.email, user.senha).then((data) =>{
+   signInWithEmailAndPassword(auth, user.email, user.senha)
+   
+   .then((data) =>{
      console.log("entrei");
      const uid = data.user.uid;
      const user = data.user;
-     console.log(uid, user);
- 
-     
-     // const clientInfo = doc(clientsCollection,uid);
-     // console.log(clientInfo);
- 
-    //  const docReference = doc(db, "clientes", uid);
-    //  const docsnap = getDoc(docReference);
- 
-    //  console.log(docsnap)
-    //  if(docsnap.exists()){
-    //    console.log("Document data:", docSnap.data());
-    //    } else {
-    //      // doc.data() will be undefined in this case
-    //      console.log("No such document!");
-    //    }
-     //console.log(docsnap);
- 
- 
- 
- 
-     //.log(clientInfo); 
-    
+     //console.log(uid, user);
+     console.log(data);
+     alert("usuario autenticado");
+     window.location.replace('initial-page.html');
    })
+
    .catch((error) =>{
      const errorCode = error.code;
      const errorMessage = error.message
- 
+     
      console.log(errorCode, errorMessage);
+     alert("falha ao autenticar");
    })
  }
 
+
  export function logoff(){
   signOut(auth).then(() => {
-    // Sign-out successful.
+    alert("usuário desconectado");
+    window.location.replace('index.html');
   }).catch((error) => {
     // An error happened.
+    alert("ocorreu um erro");
   });
  }

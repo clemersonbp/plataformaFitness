@@ -1,3 +1,5 @@
+import { login, logoff } from "./firebase.js"
+
 // Exibir login-popup
 document.querySelector('#show-login').addEventListener('click', function () {
   document.querySelector('.popup').classList.add('active')
@@ -9,16 +11,20 @@ document.querySelector('.popup .close-btn').addEventListener('click', function (
 })
 
 //AUTHENTICATION SYSTEM
-// import { login, logoff } from "./firebase.js"
 
-// var btnEntrar = document.querySelector("#btnEntrar");
-// var spanUserInfo = document.querySelector("#userInfo");
-// btnEntrar.addEventListener("click", function (event) {
-//   event.preventDefault();
-//   const formData = {
-//     email: document.querySelector("#email").value,
-//     senha: document.querySelector("#password").value,
-//   }
-//   login(formData);
-// });
+var btnEntrar = document.querySelector("#btnEntrar");
+//var spanUserInfo = document.querySelector("#userInfo");
+
+btnEntrar.addEventListener("click", function (event) {
+
+  event.preventDefault();
+  const formData = {
+    email: document.querySelector("#email").value,
+    senha: document.querySelector("#password").value,
+  }
+  console.log(formData);
+  login(formData);
+});
+
+
 
