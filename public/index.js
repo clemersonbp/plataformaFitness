@@ -7,3 +7,18 @@ document.querySelector('#show-login').addEventListener('click', function () {
 document.querySelector('.popup .close-btn').addEventListener('click', function () {
   document.querySelector('.popup').classList.remove('active')
 })
+
+//AUTHENTICATION SYSTEM
+// import { login, logoff } from "./firebase.js"
+
+// var btnEntrar = document.querySelector("#btnEntrar");
+// var spanUserInfo = document.querySelector("#userInfo");
+// btnEntrar.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   const formData = {
+//     email: document.querySelector("#email").value,
+//     senha: document.querySelector("#password").value,
+//   }
+//   login(formData);
+// });
+
