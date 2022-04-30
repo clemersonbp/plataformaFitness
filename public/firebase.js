@@ -1,6 +1,7 @@
 //FIREBASE CDN IMPORT
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getFirestore, doc, getDoc, getDocs, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, getDocs, collection, addDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,6 +21,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
 
 //path to clients collection on firebase
 const clientsCollection = collection(db, 'clientes');
@@ -32,21 +34,149 @@ const profCollectionNut = collection(db, 'profissionais A. Nutricional');
 
 //MIDLEWARE TO TREAT THE DATA BEFORE SENDINGO TROUGH THE DATABASE
 export function createClient(clientData) {
-  addNewDocument(clientData);
+  
+  //addNewDocument(clientData, clientsCollection);
+
+  createUserWithEmailAndPassword(auth, clientData.emailCad ,clientData.senhaCad)
+    .then(data => {
+      
+      //referencia ao novo id criado
+      const uid = data.user.uid;
+
+      //referencia a coleção passando o novo id a ser adicionado
+      const newUserDocument = doc(clientsCollection, uid);
+
+      //funcaao que cria o novo usuário + id na coleção passada
+      writeDocument(newUserDocument, clientData);
+      
+      //Preciso remover a senha, pois não é necessário salvar no firestore
+      console.log(clientsCollection);
+      //clientsCollection.doc(uid).set(clientData);
+      console.log("Conta criada com sucesso");
+    })
+    .catch(error => {
+      
+      if(error.code == 'auth/email-already-in-use'){
+        console.log("esse email já esta em uso por outro usuário");
+      }else{
+        console.log(error.message);
+      }
+      console.log(error);
+    })
+
+
 }
 
 //MIDLEWARE TO TREAT THE DATA BEFORE SENDINGO TROUGH THE DATABASE
 export function createProfessionalEsp(profEspData) {
-  addNewDocument(profEspData, profCollectionEsp);
+
+  createUserWithEmailAndPassword(auth, profEspData.emailCad, profEspData.senhaCad)
+
+    .then(data => {
+      console.log("entrei")
+      //referencia ao novo id criado
+      const uid = data.user.uid;
+
+      //referencia a coleção passando o novo id a ser adicionado
+      const newUserDocument = doc(profCollectionEsp, uid);
+
+      //funcaao que cria o novo usuário + id na coleção passada
+      writeDocument(newUserDocument, profEspData);
+      
+      //Preciso remover a senha, pois não é necessário salvar no firestore
+      //console.log(clientsCollection);
+      //clientsCollection.doc(uid).set(clientData);
+      console.log("Conta criada com sucesso");
+    })
+    .catch(error => {
+      
+      if(error.code == 'auth/email-already-in-use'){
+        console.log("esse email já esta em uso por outro usuário");
+      }else{
+        console.log(error.message);
+      }
+      console.log(error);
+    })
+
+  //addNewDocument(profEspData, profCollectionEsp);
 }
 
 //MIDLEWARE TO TREAT THE DATA BEFORE SENDINGO TROUGH THE DATABASE
 export function createProfessionalNut(profNutData) {
-  addNewDocument(profNutData, profCollectionNut);
+  //console.log(profNutData[0].emailCad, profNutData[0].senhaCad);
+  createUserWithEmailAndPassword(auth, profNutData.emailCad ,profNutData.senhaCad)
+    .then(data => {
+
+      //referencia ao novo id criado
+      const uid = data.user.uid;
+
+      //referencia a coleção passando o novo id a ser adicionado
+      const newUserDocument = doc(profCollectionNut, uid);
+
+      //funcaao que cria o novo usuário + id na coleção passada
+      writeDocument(newUserDocument, profNutData);
+      
+      //Preciso remover a senha, pois não é necessário salvar no firestore
+      //console.log(clientsCollection);
+      //clientsCollection.doc(uid).set(clientData);
+      console.log("Conta criada com sucesso");
+    })
+    .catch(error => {
+      
+      if(error.code == 'auth/email-already-in-use'){
+        console.log("esse email já esta em uso por outro usuário");
+      }else{
+        console.log(error.message);
+      }
+      console.log(error);
+    })
+
+  //addNewDocument(profNutData, profCollectionNut);
 }
 
-//CREATE THE DOCUMENT ON THE FIREBASE DB
-async function addNewDocument(data, collection) {
-  const newDoc = await addDoc(collection, data);
-  console.log(`documento criado em ${newDoc.path}`);
+//CREATE THE DOCUMENT ON THE FIREBASE DB(OLD)
+// async function addNewDocument(data, collection) {
+//   const newDoc = await addDoc(collection, data);
+//   console.log(`documento criado em ${newDoc.path}`);
+// }
+
+function writeDocument(newUserDocument, data) {
+  console.log("cai aqui")
+  setDoc(newUserDocument, data);
 }
+
+/////////////////////////////////////////////////////LOGIN SYSTEM///////////////////////////////////////////////////////////////////////////////////
+
+export function login(user){
+ 
+   signInWithEmailAndPassword(auth, user.email, user.senha)
+   
+   .then((data) =>{
+     console.log("entrei");
+     const uid = data.user.uid;
+     const user = data.user;
+     //console.log(uid, user);
+     console.log(data);
+     alert("usuario autenticado");
+     window.location.replace('initial-page.html');
+   })
+
+   .catch((error) =>{
+     const errorCode = error.code;
+     const errorMessage = error.message
+     
+     console.log(errorCode, errorMessage);
+     alert("falha ao autenticar");
+   })
+ }
+
+
+ export function logoff(){
+  signOut(auth).then(() => {
+    alert("usuário desconectado");
+    window.location.replace('index.html');
+  }).catch((error) => {
+    // An error happened.
+    alert("ocorreu um erro");
+  });
+ }

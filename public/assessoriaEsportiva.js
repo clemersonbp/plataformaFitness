@@ -63,28 +63,20 @@ function cadastrar() {
     && validSobreMim && validExperiencia) {
 
     let listaUserProfissional = JSON.parse(localStorage.getItem('listaUserProfissionalLocal'))
-    console.log(listaUserProfissional)
-
-    let listaUserProfissionalAdd = {}
-    listaUserProfissionalAdd =
-    {
+    //console.log(listaUserProfissional)
+    
+    Object.assign(listaUserProfissional, {
       crefCad: cref.value,
       planoMensalCad: planoMensal.value,
       planoTrimestralCad: planoTrimestral.value,
       planoSemestralCad: planoSemestral.value,
       sobreMimCad: sobreMim.value,
       experienciaCad: experiencia.value
-    }
+    });
 
-    console.log(listaUserProfissionalAdd)
-
-    var listaUserProfissionalEspCadastro = Object.assign({}, listaUserProfissional, listaUserProfissionalAdd);
-
-    console.log(listaUserProfissionalEspCadastro)
     //CREATES DE DOCUMENT ON DATABASE TEST
     //CALL A SEPARATE CLASS ON THE FIREBASE JS BEFORE SENDING TO THE DB
-
-    createProfessionalEsp(listaUserProfissionalEspCadastro);
+    createProfessionalEsp(listaUserProfissional);
 
     msgSuccess.setAttribute('style', 'display: block')
     msgSuccess.innerHTML = '<strong>Cadastrando Profissional...</strong>'
@@ -93,7 +85,7 @@ function cadastrar() {
 
     setTimeout(() => {
       window.location.href = './index.html'
-    }, 1000)
+    }, 2000)
 
 
   } else {

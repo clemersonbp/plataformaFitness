@@ -161,9 +161,9 @@ function cadastrar() {
     && validUf && validInstFinanceira && validAgencia && validConta && validPix) {
 
 
-    let listaUserProfissionalLocal = JSON.parse(localStorage.getItem('listaUserProfissionalLocal') || '[]')
-
-    listaUserProfissionalLocal.push(
+    //let listaUserProfissionalLocal = JSON.parse(localStorage.getItem('listaUserProfissionalLocal') || '[]')
+    let listaUserProfissionalLocal = {}
+    listaUserProfissionalLocal =
       {
         nomeCad: nome.value,
         sobrenomeCad: sobrenome.value,
@@ -184,7 +184,7 @@ function cadastrar() {
         cidadeCad: cidade.value,
         ufCad: uf.value
       }
-    )
+    
     localStorage.setItem('listaUserProfissionalLocal', JSON.stringify(listaUserProfissionalLocal))
 
     // let listaUserProfissional = {}
