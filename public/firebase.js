@@ -1,6 +1,6 @@
 //FIREBASE CDN IMPORT
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getFirestore, doc, getDoc, getDocs, collection, addDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, getDocs, collection, addDoc, setDoc, query, where } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -148,17 +148,50 @@ function writeDocument(newUserDocument, data) {
 /////////////////////////////////////////////////////LOGIN SYSTEM///////////////////////////////////////////////////////////////////////////////////
 
 export function login(user){
- 
-   signInWithEmailAndPassword(auth, user.email, user.senha)
-   
-   .then((data) =>{
-     console.log("entrei");
-     const uid = data.user.uid;
-     const user = data.user;
-     //console.log(uid, user);
-     console.log(data);
-     alert("usuario autenticado");
-     window.location.replace('initial-page.html');
+  const userEmail = user.email;
+  
+  signInWithEmailAndPassword(auth, user.email, user.senha)
+  
+  .then((data) =>{
+    console.log("entrei");
+    const uid = data.user.uid;
+    const user = data.user;
+    // console.log(uid, user);
+    // console.log(data);
+    console.log(userEmail);
+    alert("usuario autenticado");
+
+    const cliente = query(collection(db, "clientes"), where("emailCad", "==", userEmail));
+      (async () => { 
+        const queryCliente = await getDocs(cliente);
+        
+        queryCliente.forEach((doc) => {
+          let user = doc.data();
+          var userData =
+          {
+            nome: user.nomeCad,
+            sobrenome: user.sobrenomeCad,
+            cpf: user.cpfCad,
+            telefone: user.telefoneCad,
+            email: user.emailCad,
+            endereco: user.enderecoCad,
+            numeroResid: user.numeroResiCad,
+            cep: user.cepCad,
+            complemento: user.complementoCad,
+            bairro: user.bairroCad,
+            cidade: user.cidadeCad,
+            uf: user.ufCad
+          };
+  
+          console.log('userData', userData);
+  
+          localStorage.setItem('userData', JSON.stringify(userData));
+        });
+        
+        // window.location.replace('initial-page.html');
+
+      })()
+
    })
 
    .catch((error) =>{
@@ -193,3 +226,51 @@ export function passwordRecovery(email) {
   });
 
 }
+
+//// TESTES DE CONSULTA DE BANCO DE DADOS ////
+
+// Create a reference to the cities collection
+// Create a query against the collection.
+
+// const cliente = query(collection(db, "clientes"), where("emailCad", "==", "andersonveeck@gmail.com"));
+// // const cliente = query(collection(db, "clientes"), where("numeroResiCad", "==", "55"));
+
+// const queryCliente = await getDocs(cliente);
+// queryCliente.forEach((doc) => {
+//   let user = doc.data();
+//   // doc.data() is never undefined for query doc snapshots
+//   // console.log(doc.id, " => ", doc.data());
+//   // console.log(user.nomeCad);
+//   // console.log(user.sobrenomeCad);
+//   // console.log(user.emailCad);
+//   // console.log(user.cpfCad);
+//   // console.log(user.telefoneCad);
+//   // console.log(user.enderecoCad);
+//   // console.log(user.numeroResiCad);
+//   // console.log(user.cepCad);
+//   // console.log(user.bairroCad);
+//   // console.log(user.cidadeCad);
+//   // console.log(user.ufCad);
+
+//   var userData =
+//   {
+//     nome: user.nomeCad,
+//     sobrenome: user.sobrenomeCad,
+//     cpf: user.cpfCad,
+//     telefone: user.telefoneCad,
+//     email: user.emailCad,
+//     endereco: user.enderecoCad,
+//     numeroResid: user.numeroResiCad,
+//     cep: user.cepCad,
+//     complemento: user.complementoCad,
+//     bairro: user.bairroCad,
+//     cidade: user.cidadeCad,
+//     uf: user.ufCad
+//   };
+
+//   console.log('userData', userData);
+
+//   localStorage.setItem('userData', JSON.stringify(userData));
+// });
+
+
