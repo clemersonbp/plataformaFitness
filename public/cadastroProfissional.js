@@ -179,7 +179,7 @@ function cadastrar() {
         enderecoCad: endereco.value,
         numeroResiCad: numeroResi.value,
         cepCad: cep.value,
-        complementoCad: senha.value,
+        complementoCad: complementoCad.value,
         bairroCad: bairro.value,
         cidadeCad: cidade.value,
         ufCad: uf.value
