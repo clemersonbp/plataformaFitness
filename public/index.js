@@ -1,4 +1,4 @@
-import { login, logoff } from "./firebase.js"
+import { login, logoff, passwordRecovery } from "./firebase.js"
 
 // Exibir login-popup
 document.querySelector('#show-login').addEventListener('click', function () {
@@ -26,5 +26,19 @@ btnEntrar.addEventListener("click", function (event) {
   login(formData);
 });
 
+//RESET PASSWORD
 
+var forgotPassword = document.querySelector("#forgotPassword");
+console.log('forgotPassword', forgotPassword);
 
+forgotPassword.addEventListener("click", function (event) {
+
+  event.preventDefault();
+  // const email = {
+  //   email: document.querySelector("#forgotPassword").value
+  // }
+  const email = 'andersonveeck@gmail.com';
+
+  console.log(email);
+  passwordRecovery(email);
+});

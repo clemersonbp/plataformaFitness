@@ -1,7 +1,7 @@
 //FIREBASE CDN IMPORT
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { getFirestore, doc, getDoc, getDocs, collection, addDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -179,4 +179,21 @@ export function login(user){
     // An error happened.
     alert("ocorreu um erro");
   });
- }
+}
+
+//// PASSWORD RECOVERY /////
+
+export function passwordRecovery(email) {
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      alert('Verifique seu e-mail :)')
+    }).catch((error) => {
+      alert("ocorreu um erro");
+    });
+    
+    // firebase
+    //   .auth()
+    //   .sendPasswordResetEmail(email)
+    //   .then(() => Alert.alert('','Verifique seu e-mail :)'))
+    //   .catch(error => Alert.alert('Error', error.message));
+}
