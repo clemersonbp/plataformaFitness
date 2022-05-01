@@ -184,16 +184,12 @@ export function login(user){
 //// PASSWORD RECOVERY /////
 
 export function passwordRecovery(email) {
+  var userEmail = email;
   sendPasswordResetEmail(auth, email)
-    .then(() => {
-      alert('Verifique seu e-mail :)')
-    }).catch((error) => {
-      alert("ocorreu um erro");
-    });
-    
-    // firebase
-    //   .auth()
-    //   .sendPasswordResetEmail(email)
-    //   .then(() => Alert.alert('','Verifique seu e-mail :)'))
-    //   .catch(error => Alert.alert('Error', error.message));
+  .then(() => {
+    alert('Verifique seu e-mail :)')
+  }).catch((error) => {
+    alert("Ocorreu um erro");
+  });
+
 }

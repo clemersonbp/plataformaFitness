@@ -58,11 +58,11 @@
         <h2>Faça login na sua conta:</h2>
         <div class="form-element">
           <!-- <label for="email">E-mail</label> -->
-          <input type="text" id="email" placeholder="e-mail">
+          <input type="text" id="email" placeholder="e-mail" required>
         </div>
         <div class="form-element">
           <!-- <label for="password">Senha</label> -->
-          <input type="password" id="password" placeholder="senha">
+          <input type="password" id="password" placeholder="senha" required>
         </div>
         <!-- <div class="form-element">
           <input type="checkbox" id="remember-me">
@@ -72,10 +72,25 @@
           <button class="btn" id="btnEntrar">Entrar</button>
         </div>
         <div class="form-element">
-          <a id="forgotPassword" href="#">Esqueceu sua senha?</a>
+          <a id="forgot-password" href="#">Esqueceu sua senha?</a>
         </div>
       </div>
     </div>
+
+    <div class="popup password-recovery">
+      <div class="close-btn">&times;</div>
+      <div class="form">
+        <p>Esqueceu a senha da sua conta?</p>
+        <p>Digite seu endereço de e-mail e nós lhe enviaremos um link de recuperação.</p>
+        <div class="form-element">
+          <input type="text" id="recovery-email" placeholder="e-mail">
+        </div>
+        <div class="form-element">
+          <button class="btn" id="btn-send-recovery">Enviar e-mail de recuperação</button>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <footer class="footer">

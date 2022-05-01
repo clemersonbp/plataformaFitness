@@ -3,12 +3,41 @@ import { login, logoff, passwordRecovery } from "./firebase.js"
 // Exibir login-popup
 document.querySelector('#show-login').addEventListener('click', function () {
   document.querySelector('.popup').classList.add('active')
-})
+});
+
+// document.querySelector('.popup.password-recovery .close-btn').addEventListener('click', hidePasswordRecovery);
+// function hidePasswordRecovery() {
+//     document.querySelector('.popup.password-recovery').classList.remove('active');
+// }
 
 // Esconder login-popup
 document.querySelector('.popup .close-btn').addEventListener('click', function () {
+  document.querySelector('#email').value = '';
+  document.querySelector('#password').value = '';
   document.querySelector('.popup').classList.remove('active')
-})
+});
+
+// Exibir password-recovery-popup
+document.querySelector('#forgot-password').addEventListener('click', function () {
+  document.querySelector('#email').value = '';
+  document.querySelector('#password').value = '';
+  document.querySelector('.popup').classList.remove('active');
+  document.querySelector('.popup.password-recovery').classList.add('active')
+});
+
+// Esconder password-recovery-popup
+function hidePasswordRecovery() {
+  document.querySelector('#recovery-email').value = '';
+  document.querySelector('.popup.password-recovery').classList.remove('active');
+}
+
+document.querySelector('.popup.password-recovery .close-btn').addEventListener('click', hidePasswordRecovery);
+
+
+// document.querySelector('.popup.password-recovery .close-btn').addEventListener('click', function () {
+//   document.querySelector('#recovery-email').value = '';
+//   document.querySelector('.popup.password-recovery').classList.remove('active')
+// });
 
 //AUTHENTICATION SYSTEM
 
@@ -28,17 +57,14 @@ btnEntrar.addEventListener("click", function (event) {
 
 //RESET PASSWORD
 
-var forgotPassword = document.querySelector("#forgotPassword");
-console.log('forgotPassword', forgotPassword);
+var sendRecovery = document.querySelector("#btn-send-recovery");
 
-forgotPassword.addEventListener("click", function (event) {
-
-  event.preventDefault();
-  // const email = {
-  //   email: document.querySelector("#forgotPassword").value
-  // }
-  const email = 'andersonveeck@gmail.com';
+sendRecovery.addEventListener("click", function (event) {
+  
+  // event.preventDefault();
+  const email = document.querySelector("#recovery-email").value;
 
   console.log(email);
-  passwordRecovery(email);
+  // passwordRecovery(email);
+  hidePasswordRecovery();
 });
