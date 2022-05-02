@@ -153,12 +153,11 @@ export function login(user){
   signInWithEmailAndPassword(auth, user.email, user.senha)
   
   .then((data) =>{
-    console.log("entrei");
+    // console.log("entrei");
     const uid = data.user.uid;
     const user = data.user;
     // console.log(uid, user);
     // console.log(data);
-    console.log(userEmail);
     alert("usuario autenticado");
 
     const cliente = query(collection(db, "clientes"), where("emailCad", "==", userEmail));
@@ -183,12 +182,12 @@ export function login(user){
             uf: user.ufCad
           };
   
-          console.log('userData', userData);
+          // console.log('userData', userData);
   
-          localStorage.setItem('userData', JSON.stringify(userData));
+          sessionStorage.setItem('userData', JSON.stringify(userData));
         });
         
-        // window.location.replace('initial-page.html');
+        window.location.replace('initial-page.html');
 
       })()
 
@@ -207,6 +206,7 @@ export function login(user){
  export function logoff(){
   signOut(auth).then(() => {
     alert("usuário desconectado");
+    sessionStorage.clear();
     window.location.replace('index.html');
   }).catch((error) => {
     // An error happened.
