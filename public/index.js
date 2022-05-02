@@ -51,7 +51,7 @@ btnEntrar.addEventListener("click", function (event) {
     email: document.querySelector("#email").value,
     senha: document.querySelector("#password").value,
   }
-  console.log(formData);
+  // console.log(formData);
   login(formData);
 });
 
@@ -65,6 +65,6 @@ sendRecovery.addEventListener("click", function (event) {
   const email = document.querySelector("#recovery-email").value;
 
   console.log(email);
-  // passwordRecovery(email);
+  passwordRecovery(email);
   hidePasswordRecovery();
 });
