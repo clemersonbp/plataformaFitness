@@ -221,8 +221,18 @@ span a {
               transform 200ms ease-in-out 0ms;
 }
 
+.popup.register.active {
+  top: 100%;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: top 0ms ease-in-out 0ms,
+              opacity 200ms ease-in-out 0ms,
+              transform 200ms ease-in-out 0ms;
+}
+
+
 .popup.login-result span,
-.popup.password-recovery-result span{
+.popup.password-recovery-result span {
   margin-left: 0;
 }
 

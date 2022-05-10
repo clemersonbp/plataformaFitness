@@ -19,8 +19,8 @@ let validSobreMim = true
 let experiencia = document.querySelector('#experiencia')
 let validExperiencia = true
 
-let msgError = document.querySelector('#msgError')
-let msgSuccess = document.querySelector('#msgSuccess')
+// let msgError = document.querySelector('#msgError')
+// let msgSuccess = document.querySelector('#msgSuccess')
 
 cref.addEventListener('keyup', () => {
   if (cref.value) {
@@ -59,6 +59,9 @@ btnCadastrar.addEventListener("click", function () {
 });
 
 function cadastrar() {
+  let showRegisterPopup = document.querySelector('.popup.register').classList.add('active');
+  let registerResultMsg = document.querySelector('#coach-register-popup-msg')
+
   if (validCref && validPlanoMensal && validPlanoTrimestral && validPlanoSemestral
     && validSobreMim && validExperiencia) {
 
@@ -78,10 +81,13 @@ function cadastrar() {
     //CALL A SEPARATE CLASS ON THE FIREBASE JS BEFORE SENDING TO THE DB
     createProfessionalEsp(listaUserProfissional);
 
-    msgSuccess.setAttribute('style', 'display: block')
-    msgSuccess.innerHTML = '<strong>Cadastrando Profissional...</strong>'
-    msgError.setAttribute('style', 'display: none')
-    msgError.innerHTML = ''
+    showRegisterPopup;
+    registerResultMsg.innerHTML = 'Cadastro realizado!'
+
+    // msgSuccess.setAttribute('style', 'display: block')
+    // msgSuccess.innerHTML = '<strong>Cadastrando Profissional...</strong>'
+    // msgError.setAttribute('style', 'display: none')
+    // msgError.innerHTML = ''
 
     setTimeout(() => {
       window.location.href = './index.html'
@@ -89,9 +95,18 @@ function cadastrar() {
 
 
   } else {
-    msgError.setAttribute('style', 'display: block')
-    msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
-    msgSuccess.innerHTML = ''
-    msgSuccess.setAttribute('style', 'display: none')
+
+    showRegisterPopup;
+    registerResultMsg.innerHTML = 'Preencha todos os campos corretamente.'
+
+    // Esconder register-popup
+    document.querySelector('.popup.register .close-btn').addEventListener('click', function () {
+      document.querySelector('.popup.register').classList.remove('active')
+    });
+
+    // msgError.setAttribute('style', 'display: block')
+    // msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
+    // msgSuccess.innerHTML = ''
+    // msgSuccess.setAttribute('style', 'display: none')
   }
 }
