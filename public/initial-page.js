@@ -1,10 +1,15 @@
-import { login, logoff} from "./firebase.js"
+import { login, logoff } from "./firebase.js"
 
 var btnSair = document.querySelector("#btnSair");
 
 btnSair.addEventListener("click", function (event){
   logoff();
 })
+
+// Esconder login-result-popup
+// document.querySelector('.popup.logout-result .close-btn').addEventListener('click', function () {
+//   document.querySelector('.popup.logout-result').classList.remove('active')
+// });
 
 let userData = JSON.parse(sessionStorage.getItem('userData'));
 // console.log(userData);

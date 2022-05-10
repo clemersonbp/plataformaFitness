@@ -149,6 +149,8 @@ function writeDocument(newUserDocument, data) {
 
 export function login(user){
   const userEmail = user.email;
+  let showLoginResultPopup = document.querySelector('.popup.login-result').classList.add('active');
+  let loginResultMsg = document.querySelector('#login-result-msg');
   
   signInWithEmailAndPassword(auth, user.email, user.senha)
   
@@ -156,9 +158,10 @@ export function login(user){
     // console.log("entrei");
     const uid = data.user.uid;
     const user = data.user;
-    // console.log(uid, user);
-    // console.log(data);
-    alert("usuario autenticado");
+    // document.querySelector('.popup.login-result').classList.add('active');
+    // document.querySelector('#login-result-msg').innerHTML = 'Login realizado com sucesso :)';
+    showLoginResultPopup;
+    loginResultMsg.innerHTML = 'Login realizado com sucesso :)';
 
     const cliente = query(collection(db, "clientes"), where("emailCad", "==", userEmail));
       (async () => { 
@@ -187,42 +190,68 @@ export function login(user){
           sessionStorage.setItem('userData', JSON.stringify(userData));
         });
         
-        window.location.replace('initial-page.html');
+        setTimeout(() => {
+          window.location.replace('initial-page.html');
+        }, 2000)
 
       })()
 
    })
 
    .catch((error) =>{
-     const errorCode = error.code;
-     const errorMessage = error.message
-     
-     console.log(errorCode, errorMessage);
-     alert("falha ao autenticar");
-   })
+      const errorCode = error.code;
+      const errorMessage = error.message
+      console.log(errorCode, errorMessage);
+      
+      // document.querySelector('.popup.login-result').classList.add('active');
+      // document.querySelector('#login-result-msg').innerHTML = 'Falha ao autenticar :(<br> Revise os dados informados.';
+
+      showLoginResultPopup;
+      loginResultMsg.innerHTML = 'Falha ao autenticar :(<br> Revise os dados informados.';
+    })
  }
 
 
  export function logoff(){
-  signOut(auth).then(() => {
-    alert("usuário desconectado");
-    sessionStorage.clear();
-    window.location.replace('index.html');
-  }).catch((error) => {
-    // An error happened.
-    alert("ocorreu um erro");
-  });
+    let showLoginResultPopup = document.querySelector('.popup.logout-result').classList.add('active');
+    let loginResultMsg = document.querySelector('#logout-result-msg');
+
+    signOut(auth).then(() => {
+      showLoginResultPopup;
+      loginResultMsg.innerHTML = 'Logout realizado com sucesso :)';
+      // alert("usuário desconectado");
+      sessionStorage.clear();
+      setTimeout(() => {        
+        window.location.replace('index.html');
+        loginResultMsg.innerHTML = '';
+      }, 2000);
+
+    }).catch((error) => {
+      // An error happened.
+      // alert("ocorreu um erro");
+      showLoginResultPopup;
+      loginResultMsg.innerHTML = 'Falha ao realizar o logout :(';
+    });
 }
 
 //// PASSWORD RECOVERY /////
 
 export function passwordRecovery(email) {
   var userEmail = email;
+
+  let showPasswordRecoveryResultPopup = document.querySelector('.popup.password-recovery-result').classList.add('active');
+  
+  let recoveryResultMsg = document.querySelector('#recovery-result-msg');
+
   sendPasswordResetEmail(auth, email)
   .then(() => {
-    alert('Verifique seu e-mail :)')
+    showPasswordRecoveryResultPopup;
+    recoveryResultMsg.innerHTML = '';
+    recoveryResultMsg.innerHTML = 'Verifique seu e-mail :)';
   }).catch((error) => {
-    alert("Ocorreu um erro");
+    showPasswordRecoveryResultPopup;
+    recoveryResultMsg.innerHTML = '';
+    recoveryResultMsg.innerHTML = 'Ocorreu um erro :(<br> Revise os dados informados.';
   });
 
 }
