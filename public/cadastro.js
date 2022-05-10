@@ -40,8 +40,8 @@ let validCidade = false
 let uf = document.querySelector('#uf')
 let validUf = false
 
-let msgError = document.querySelector('#msgError')
-let msgSuccess = document.querySelector('#msgSuccess')
+// let msgError = document.querySelector('#msgError')
+// let msgSuccess = document.querySelector('#msgSuccess')
 
 nome.addEventListener('keyup', () => {
   if (nome.value) {
@@ -115,6 +115,9 @@ btnCadastrar.addEventListener("click", function () {
 });
 
 function cadastrar() {
+  let showRegisterPopup = document.querySelector('.popup.register').classList.add('active');
+  let registerResultMsg = document.querySelector('#client-register-popup-msg')
+
   if (validNome && validSobrenome && validCpf && validTelefone
     && validEmail && validSenha && validEndereco && validNumeroResi
     && validCep && validComplemento && validBairro && validCidade
@@ -146,10 +149,13 @@ function cadastrar() {
 
     createClient(listaUser);
 
-    msgSuccess.setAttribute('style', 'display: block')
-    msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>'
-    msgError.setAttribute('style', 'display: none')
-    msgError.innerHTML = ''
+    showRegisterPopup;
+    registerResultMsg.innerHTML = 'Cadastro realizado!'
+
+    // msgSuccess.setAttribute('style', 'display: block')
+    // msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>'
+    // msgError.setAttribute('style', 'display: none')
+    // msgError.innerHTML = ''
 
     setTimeout(() => {
       window.location.href = './index.html'
@@ -157,9 +163,18 @@ function cadastrar() {
 
 
   } else {
-    msgError.setAttribute('style', 'display: block')
-    msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
-    msgSuccess.innerHTML = ''
-    msgSuccess.setAttribute('style', 'display: none')
+
+    showRegisterPopup;
+    registerResultMsg.innerHTML = 'Preencha todos os campos corretamente.'
+
+    // Esconder login-result-popup
+    document.querySelector('.popup.register .close-btn').addEventListener('click', function () {
+      document.querySelector('.popup.register').classList.remove('active')
+    });
+    
+    // msgError.setAttribute('style', 'display: block')
+    // msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
+    // msgSuccess.innerHTML = ''
+    // msgSuccess.setAttribute('style', 'display: none')
   }
 }
