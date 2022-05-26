@@ -1,46 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #f0f2f5;
-  height: 100vh;
-  color: #1b1474;
-}
-
-body, input, textarea, button {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-}
-
-h1, h2, h3, h4, h5, h6, strong {
-  font-weight: 600;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 16px 0;
-}
+/* @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css); */
+@import "./global.css";
+@import "./cards.css";
 
 #termos-de-uso {
   padding: 0 32px;
-}
-
-button, a {
-  cursor: pointer;
-  color: #fff;
-  background-color: #1b1474;
-  border-radius: 5px;
-  height: 40px;
-  width: 120px;
-  border: none;
-  text-align: center;
-  align-items: flex-start;
-  font-size: .9rem;
-  text-decoration: none;
-  border-radius: 5px;
-  padding: 9px 0; 
 }
 
 [disabled] {

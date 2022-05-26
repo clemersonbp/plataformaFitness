@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+
+  <title>Plataforma Fitness - Resultados da Busca</title>
+
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <header class="header">
+    <a class="header__logo-link" href="./index.html">
+      <img src="../assets/logo.svg" alt="Logo PlataformaFitness">
+    </a>
+    <nav class="header__links">
+    </nav>
+  </header>
+  <main class="search-results">
+    <h1 class="search-results-title"><span class="search-results-value">72</span> resultados encontrados</h1>
+    <div class="card">
+
+      <div class="card-pro-photo">
+        <img src="./assets/portrait-test.jpg" alt="Foto do profissional">
+      </div>
+
+      <div class="card-basic-data">
+        <h2 class="card-pro-name">
+          <span>Julio Muzy</span>
+        </h2>
+        <div class="card-pro-evaluation">
+
+          <div class="barra" >
+            <span class="bg" data-bind="style:{width: ((Number($data[\'product.dotz_productAverageRate\']()[0]).toFixed(1) * 100) / 5) + \'%\'  }"></span>
+            <div class="estrelas">
+                <span id="stella" class="star" data-bind="style:{\'--percent\': ((Number($data[\'product.dotz_productAverageRate\']()[0]).toFixed(1) * 100) / 5) + \'%\'  }"></span>
+            </div>
+          </div>
+
+          <!-- <fieldset class="rating">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label class="full" for="star5" title="5"></label>
+
+            <input type="radio" id="star4half" name="rating" value="4 and a half">
+            <label class="half" for="star4half" title="4.5"></label>
+
+            <input type="radio" id="star4" name="rating" value="4">
+            <label class="full" for="star4" title="4"></label>
+
+            <input type="radio" id="star3half" name="rating" value="3 and a half">
+            <label class="half" for="star3half" title="3.5"></label>
+
+            <input type="radio" id="star3" name="rating" value="3">
+            <label class="full" for="star3" title="3"></label>
+
+            <input type="radio" id="star2half" name="rating" value="2 and a half">
+            <label class="half" for="star2half" title="2.5"></label>
+
+            <input type="radio" id="star2" name="rating" value="2">
+            <label class="full" for="star2" title="2"></label>
+
+            <input type="radio" id="star1half" name="rating" value="1 and a half">
+            <label class="half" for="star1half" title="1.5"></label>
+
+            <input type="radio" id="star1" name="rating" value="1">
+            <label class="full" for="star1" title="1 star"></label>
+
+            <input type="radio" id="starhalf" name="rating" value="half">
+            <label class="half" for="starhalf" title="0.5"></label>
+            
+          </fieldset> -->
+          <span>180 avaliações</span>
+        </div>
+        <div class="card-pro-min-value">
+          A partir de R$ <span>150 / mês</span>
+        </div>
+        <div class="card-pro-address">
+          <span>R. Gustavo R. Sehbe, 223</span>
+        </div>
+      </div>
+
+      <div class="card-occupation-area">
+        <h3 class="occupation-area-title">Area de atuação:</h3>
+        <p class="occupation-area-description">
+          <span>Hipertrofia Hipertrofia Hipertrofia Hipertrofia Hipertrofia Hipertrofia Hipertrofia</span>
+        </p>
+      </div>
+      
+    </div>
+  </main>
+  
+</body>
+</html>

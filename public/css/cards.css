@@ -1,0 +1,161 @@
+/*  Resultados da Busca  */
+
+h2,
+h3 {
+  margin: 0;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-results-title {
+
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  /* align-items: center; */
+
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.10);
+}
+
+.card img {
+  max-width: 100%;
+  grid-column: 1;
+  border-radius: 4px;
+}
+
+.card-basic-data {
+  grid-column: 2 / -1;
+}
+
+.card-pro-photo {
+  display: block;
+  /* width: ; */
+}
+
+.card-pro-evaluation {
+  display: flex;
+  /* align-items: flex-end; */
+}
+
+.card-pro-evaluation span {
+  display: inline-block;
+}
+
+.card-pro-evaluation::before {
+  content: "";
+}
+
+.card-pro-min-value {
+  display: block;
+}
+
+/* .checked {
+  color: orange;
+} */
+
+.card-occupation-area {
+  grid-column: 1 / -1;
+}
+
+fieldset, label { 
+  margin: 0; 
+  padding: 0; 
+}
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  display: inline-block;
+  border: none;
+  margin-right: 4px;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px 2px;
+  font-size: 1rem;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFD700;  } 
+
+
+/* // ***** NEW STARS ***** // */
+.barra {
+  float: left;
+  width: 95px;
+  height: 16px;
+  background: none;
+  margin-right: 5px;
+}
+
+.bg {
+  float: left;
+  height: 20px;
+  background: linear-gradient(90deg, #f56700 var(--percent), #8E8E8E var(--percent));    
+}
+
+.estrelas {      
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;  
+}
+
+#stella {
+--percent: 90%;
+}
+
+.star {
+  background: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: FontAwesome;
+  line-height: 1;
+
+}
+
+.star::before { 
+  content: '\f006 \f006 \f006 \f006 \f006';
+  letter-spacing: 4px;
+  background: linear-gradient(90deg, 
+  #f56700 var(--percent),
+  #8E8E8E var(--percent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* // ***** END NEW STARS ***** // */
