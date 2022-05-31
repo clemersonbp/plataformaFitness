@@ -289,3 +289,18 @@ span a {
   border-radius: 4px;
   display: none;
 }
+
+/* Perfil user */
+.content-perfil {
+  display: flex;
+  margin: auto;
+  max-width: 500px;
+  margin-bottom: 10px;
+}
+
+#foto {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  background-color: #1b1474;
+}
