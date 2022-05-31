@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="./css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
   <header class="header">
@@ -25,19 +27,61 @@
   </header>
   <main class="search-results">
     <h1 class="search-results-title"><span class="search-results-value">72</span> resultados encontrados</h1>
-    <div class="card">
+    <article class="card">
 
       <div class="card-pro-photo">
         <img src="./assets/portrait-test.jpg" alt="Foto do profissional">
       </div>
 
-      <div class="card-basic-data">
-        <h2 class="card-pro-name">
+      <section class="card-pro-data">
+        
+        <h2 class="card-pro-data-name">
           <span>Julio Muzy</span>
         </h2>
-        <div class="card-pro-evaluation">
+        <div class="card-pro-data-evaluation">
 
-          <div class="barra" >
+          <div class="barra">
+            <span class="bg"></span>
+            <div class="estrelas">
+                <span id="stella" class="star"></span>
+            </div>
+          </div>
+
+          <div>
+            <span id="evaluationQtty">180 </span> <span id="evaluationText">avaliações</span>
+          </div>
+
+        </div>
+        <div class="card-pro-data-min-value">
+          A partir de R$ <span>150 / mês</span>
+        </div>
+        <div class="card-pro-data-address">
+          <span>R. Gustavo R. Sehbe, 223</span>
+        </div>
+      </section>
+      <section class="card-occupation-area">
+        <h3 class="occupation-area-title">Area de atuação:</h3>
+        <p class="occupation-area-description">
+          <span>Hipertrofia Hipertrofia Hipertrofia Hipertrofia Hipertrofia Hipertrofia Hipertrofia</span>
+        </p>
+      </section>
+
+    </article>
+    
+    <article class="card">
+
+      <div class="card-pro-photo">
+        <img src="./assets/portrait-test.jpg" alt="Foto do profissional">
+      </div>
+
+      <section class="card-pro-data">
+
+        <h2 class="card-pro-data-name">
+          <span>Julio Muzy</span>
+        </h2>
+        <div class="card-pro-data-evaluation">
+
+          <div class="barra">
             <span class="bg" data-bind="style:{width: ((Number($data[\'product.dotz_productAverageRate\']()[0]).toFixed(1) * 100) / 5) + \'%\'  }"></span>
             <div class="estrelas">
                 <span id="stella" class="star" data-bind="style:{\'--percent\': ((Number($data[\'product.dotz_productAverageRate\']()[0]).toFixed(1) * 100) / 5) + \'%\'  }"></span>
@@ -78,23 +122,29 @@
           </fieldset> -->
           <span>180 avaliações</span>
         </div>
-        <div class="card-pro-min-value">
+        <div class="card-pro-data-min-value">
           A partir de R$ <span>150 / mês</span>
         </div>
-        <div class="card-pro-address">
+        <div class="card-pro-data-address">
           <span>R. Gustavo R. Sehbe, 223</span>
         </div>
-      </div>
-
-      <div class="card-occupation-area">
+      </section>
+      <section class="card-occupation-area">
         <h3 class="occupation-area-title">Area de atuação:</h3>
         <p class="occupation-area-description">
           <span>Hipertrofia Hipertrofia Hipertrofia Hipertrofia Hipertrofia Hipertrofia Hipertrofia</span>
         </p>
-      </div>
-      
-    </div>
+      </section>
+
+    </article>
   </main>
-  
+
+  <footer class="footer">
+    <p>Plataforma Fitness - Since 2022</p>
+  </footer>
+
+  <script src="./resultados.js"></script>
+  <!-- <script type="module" src="./resultados.js"></script> -->
+
 </body>
 </html>
