@@ -1,7 +1,7 @@
 //FIREBASE CDN IMPORT
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getFirestore, doc, getDoc, getDocs, collection, addDoc, setDoc, query, where } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, getDocs, collection, addDoc, setDoc, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -191,7 +191,8 @@ export function login(user){
         });
         
         setTimeout(() => {
-          window.location.replace('initial-page.html');
+          //window.location.replace('initial-page.html');
+          window.location.reload();
         }, 2000)
 
       })()
@@ -255,6 +256,61 @@ export function passwordRecovery(email) {
   });
 
 }
+
+export function getUserInfo (){
+
+  const cliente = query(collection(db, "clientes"), where("emailCad", "==", userEmail));
+      (async () => { 
+        const queryCliente = await getDocs(cliente);
+        
+        queryCliente.forEach((doc) => {
+          let user = doc.data();
+          var userData =
+          {
+            nome: user.nomeCad,
+            sobrenome: user.sobrenomeCad,
+            cpf: user.cpfCad,
+            telefone: user.telefoneCad,
+            email: user.emailCad,
+            endereco: user.enderecoCad,
+            numeroResid: user.numeroResiCad,
+            cep: user.cepCad,
+            complemento: user.complementoCad,
+            bairro: user.bairroCad,
+            cidade: user.cidadeCad,
+            uf: user.ufCad
+          };
+  
+          // console.log('userData', userData);
+  
+          sessionStorage.setItem('userData', JSON.stringify(userData));
+        });
+        
+        setTimeout(() => {
+          window.location.replace('initial-page.html');
+        }, 2000)
+
+      })()
+
+}
+
+export function saveEditedProfile(uid, payload){
+  //referencia para o cliente em si
+  const docRef = doc(db, "clientes", uid);
+
+  //atualiza as informações do cliente
+  updateDoc(docRef, payload);
+
+  //atualiza as informaçoes da sessão, revisar para fazer a busca do banco e não atualizar diretamente
+  sessionStorage.setItem('userData', JSON.stringify(payload));
+
+  //recarrega a página para carregar as novas informações
+  setTimeout(() => {
+    window.location.reload();
+  }, 2000)
+
+}
+   
 
 //// TESTES DE CONSULTA DE BANCO DE DADOS ////
 

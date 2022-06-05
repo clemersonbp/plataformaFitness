@@ -21,10 +21,22 @@
     <a class="header__logo-link" href="./index.html">
       <img src="../assets/logo.svg" alt="Logo PlataformaFitness">
     </a>
+
     <nav class="header__links">
       <a href="./inscreverse.html">Inscrever-se</a>
       <button id="show-login">Entrar</button>
     </nav>
+
+    <div class="header__links-loggedIn">
+      <p id="clientName"></p>
+      <input type="text" placeholder="O que você procura?">
+    </div>
+
+    <nav class="header__links-loggedIn"> 
+      <button id="btnProfile">Meu Perfil</button>
+      <button id="btnSair">Sair</button>
+    </nav>
+
   </header>
 
   <main class="content">
@@ -101,12 +113,18 @@
       <span id="recovery-result-msg"></span>
     </div>
 
+    <div class="popup logout-result">
+      <!-- <div class="close-btn">&times;</div> -->
+      <span id="logout-result-msg"></span>
+    </div>
+
   </main>
 
   <footer class="footer">
     <p>Plataforma Fitness - Since 2022</p>
   </footer>
-
+  <!-- jquery Import -->
+  <script type="module" src="../libs/jquery.js"></script>
   <script type="module" src="./index.js"></script>
 </body>
 

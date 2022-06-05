@@ -41,6 +41,10 @@
   justify-content: space-around;
 }
 
+.header__links-loggedIn{
+  display: none;
+}
+
 .content {
   max-width: 800px;
   padding: 0 25px;
@@ -175,6 +179,15 @@ span a {
               transform 200ms ease-in-out 0ms;
 }
 
+.profile-edit-form{
+  width: 50%;
+}
+.form-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
 .active {
   top: 50%;
   opacity: 1;
@@ -217,6 +230,11 @@ span a {
   display: flex;
   justify-content: center;
   margin: 15px 0 0;
+}
+
+.profile-form{
+  flex-direction: column;
+  margin-right: 20px !important;
 }
 
 .popup .form .form-element label {
