@@ -145,6 +145,6 @@ function changeHeaderStyle(){
 
 $("#btnProfile").click(function() {
   setTimeout(() => {
-    window.location.replace('perfilCLiente.html');
+    window.location.replace('perfilCliente.html');
   }, 500)
 })
