@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 130px;
+  max-width: 800px;
+  margin: auto;
+  padding: 15px 25px;
+}
+
+.header__logo-link {
+  width: fit-content;
+  height: fit-content;
+  background: none;
+}
+
+.header img {
+  width: 150px;
+}
+
+.header__links {
+  width: 120px;
+  height: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: space-around;
+}
+
+.header__links-loggedIn {
+  display: none;
+  /* display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: space-around; */
+}
+
+.header__welcome {
+  font-weight: bold;
+}
+
+.header__links-loggedIn p {
+  margin-left: 0;
+}
