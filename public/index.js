@@ -144,7 +144,9 @@ $('#btnProfile').click(function () {
 //GET THE TIPE OF SERVICE, CHECK ON DB AND RETURN AVAILABLE CITIES TO SET THE OPTIONS AVAILABLE
 $('#tipo').find('option').click(function () {
 
-  $("#local").empty();
+  //Clear the session storage to get new cities
+  sessionStorage.removeItem('availableCities');
+  removeOptions();
   var optionSelected = $(this);
 
   var valueSelected  = optionSelected.val();
@@ -152,8 +154,11 @@ $('#tipo').find('option').click(function () {
   //sessionStorage.removeItem('availableCities');
   searchLocal(valueSelected);
 
- const cities = JSON.parse(sessionStorage.getItem('availableCities'));
- setAvailableOptions(cities)
+  setTimeout(() => {
+    const cities = JSON.parse(sessionStorage.getItem('availableCities'));
+  setAvailableOptions(cities)
+  }, 500);
+ 
   
 });
 
@@ -175,10 +180,11 @@ function setAvailableOptions(listCities){
       text: city
     }))
   });
+}
 
-  //Clear the session storage to get new cities
-  sessionStorage.removeItem('availableCities');
-
+function removeOptions(){
+  //$("#local option").remove();
+  $("#local").html('<option value="">Selecione</option>');
 }
 
 

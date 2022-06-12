@@ -18,67 +18,75 @@
 
 // avaliação é recebida e o valor dupicado antes de entrar no BD
 // avaliação é de 1 a 5
+var searchResults;
+$(document).ready(function(){
+  var searchResults = JSON.parse(sessionStorage.getItem('availableProfessionals'));
+  fillPage(searchResults);
+})
 
-var searchResults = [
-  {
-    id: 1,
-    proPhoto: 'photo',
-    proName: 'Julio Muzy',
-    evaluationsQtty: 50,
-    evaluationTotal: 500,
-    serviceValue: 250,
-    proDistrict: 'Desvio Rizzo',
-    proCity: 'Caxias do Sul',
-    occupationArea: 'Hipertrofia, Treino Específico, Treino de resistência' 
-  },
-  {
-    id: 2,
-    proPhoto: 'photo',
-    proName: 'Ricardo Gouvea',
-    evaluationsQtty: 10,
-    evaluationTotal: 60,
-    serviceValue: 100,
-    proDistrict: 'Eugênio Ferreira',
-    proCity: 'Canela',
-    occupationArea: 'Treino de resistência' 
-  },
-  {
-    id: 3,
-    proPhoto: 'photo',
-    proName: 'Eduardo Ferreira',
-    evaluationsQtty: 12,
-    evaluationTotal: 60,
-    serviceValue: 200,
-    proDistrict: 'Centro',
-    proCity: 'Gramado',
-    occupationArea: 'Hipertrofia' 
-  },
-  {
-    id: 4,
-    proPhoto: 'photo',
-    proName: 'J. M. Bolsonaro',
-    evaluationsQtty: 50000,
-    evaluationTotal: 50000,
-    serviceValue: 24000,
-    proDistrict: 'Palácio do Planalto',
-    proCity: 'Brasília',
-    occupationArea: 'Conspiração, Ameaças de golpes, motociatas com dinheiro público e ataques ao sistema eleitoral' 
-  },
-  {
-    id: 5,
-    proPhoto: 'photo',
-    proName: 'Eiichiro Oda',
-    evaluationsQtty: 1,
-    evaluationTotal: 4,
-    serviceValue: 100,
-    proDistrict: 'Liberdade',
-    proCity: 'São Paulo',
-    occupationArea: 'Treino Específico' 
-  }
-]
 
+//MOCK
+// var searchResults = [
+//   {
+//     id: 1,
+//     proPhoto: 'photo',
+//     proName: 'Julio Muzy',
+//     evaluationsQtty: 50,
+//     evaluationTotal: 500,
+//     serviceValue: 250,
+//     proDistrict: 'Desvio Rizzo',
+//     proCity: 'Caxias do Sul',
+//     occupationArea: 'Hipertrofia, Treino Específico, Treino de resistência' 
+//   },
+//   {
+//     id: 2,
+//     proPhoto: 'photo',
+//     proName: 'Ricardo Gouvea',
+//     evaluationsQtty: 10,
+//     evaluationTotal: 60,
+//     serviceValue: 100,
+//     proDistrict: 'Eugênio Ferreira',
+//     proCity: 'Canela',
+//     occupationArea: 'Treino de resistência' 
+//   },
+//   {
+//     id: 3,
+//     proPhoto: 'photo',
+//     proName: 'Eduardo Ferreira',
+//     evaluationsQtty: 12,
+//     evaluationTotal: 60,
+//     serviceValue: 200,
+//     proDistrict: 'Centro',
+//     proCity: 'Gramado',
+//     occupationArea: 'Hipertrofia' 
+//   },
+//   {
+//     id: 4,
+//     proPhoto: 'photo',
+//     proName: 'J. M. Bolsonaro',
+//     evaluationsQtty: 50000,
+//     evaluationTotal: 50000,
+//     serviceValue: 24000,
+//     proDistrict: 'Palácio do Planalto',
+//     proCity: 'Brasília',
+//     occupationArea: 'Conspiração, Ameaças de golpes, motociatas com dinheiro público e ataques ao sistema eleitoral' 
+//   },
+//   {
+//     id: 5,
+//     proPhoto: 'photo',
+//     proName: 'Eiichiro Oda',
+//     evaluationsQtty: 1,
+//     evaluationTotal: 4,
+//     serviceValue: 100,
+//     proDistrict: 'Liberdade',
+//     proCity: 'São Paulo',
+//     occupationArea: 'Treino Específico' 
+//   }
+// ]
+
+function fillPage(searchResults){
 $('.search-results-value').html(searchResults.length);
-
+console.log(searchResults);
 searchResults.forEach(professional => {
 
   // card e seus elementos
@@ -238,14 +246,27 @@ searchResults.forEach(professional => {
   $('#stella').css('--percent', userRating);
 
   var usersEvaluationsText = '';
-  if (usersEvaluationsQtty === 1) {
-    usersEvaluationsText = 'avaliação';
-  } else {
-    usersEvaluationsText = 'avaliações';
+  if(usersEvaluationsQtty != undefined){
+    if (usersEvaluationsQtty === 1) {
+      usersEvaluationsText = 'avaliação';
+    } else {
+      usersEvaluationsText = 'avaliações';
+    }
+  }else{
+    usersEvaluationsText = 'Ainda não há avaliações para este perfil';
+    usersEvaluationsQtty = ""
   }
-
-  cardProPhoto.innerHTML = professional.proPhoto;  
-  cardName.innerHTML = professional.proName;
+  
+  if(professional.proPhoto == undefined){
+     // div card-pro-photo
+      cardProPhoto.setAttribute('class', 'card-pro-photo-default');
+     
+  }else{
+      cardProPhoto.innerHTML = professional.proPhoto;  
+  }
+  
+  
+  cardName.innerHTML = professional.proName + " " + professional.sobrenome;
   // $('#description').innerHTML = professional.evaluationRating;
   evaluationQtty.innerHTML = usersEvaluationsQtty;
   evaluationText.innerHTML = usersEvaluationsText;
@@ -259,3 +280,4 @@ searchResults.forEach(professional => {
   // document.body.appendChild(card);
   $('main').append(card);
 });
+}
