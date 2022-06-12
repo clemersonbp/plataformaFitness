@@ -344,6 +344,11 @@ export function searchProfessionals(tipo, cidade){
             uf: user.ufCad,
             occupationArea:user.experienciaCad,
             serviceValue: user.planoMensalCad,
+            aboutMe: user.sobreMimCad,
+            planoMensal: user.planoMensalCad,
+            planoTrimestral: user.planoTrimestralCad,
+            planoSemestral: user.planoSemestralCad,
+            crefCadastrado: user.crefCad
           };
           availableProfessionals.push(professionalInfo);
           //console.log('userData', userData);
