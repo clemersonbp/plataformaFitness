@@ -22,6 +22,20 @@ var searchResults;
 $(document).ready(function(){
   var searchResults = JSON.parse(sessionStorage.getItem('availableProfessionals'));
   fillPage(searchResults);
+  $(".linkVitrine").find('span').click(function () {
+    var nome = $(this).text()
+    searchResults.forEach(professional => {
+      profissionais = {};
+      if (nome == professional.proName + ' ' + professional.sobrenome) {
+        profissionais = professional;
+        sessionStorage.setItem('profissionalSelecionado', JSON.stringify(profissionais));
+      }
+    })
+    setTimeout(() => {
+      window.location.href = './vitrineProfissional.html'
+    }, 1000)
+  })
+
 })
 
 
@@ -119,7 +133,11 @@ searchResults.forEach(professional => {
   // h2 > span card-name
   var cardName = document.createElement('span');
   cardName.setAttribute('id', 'card-name');
-  cardProDataName.appendChild(cardName);
+    // cardProDataName.appendChild(cardName);
+    var linkProfile = document.createElement('a')
+    linkProfile.setAttribute('class', 'linkVitrine');
+    linkProfile.appendChild(cardName);
+    cardProDataName.appendChild(linkProfile)
   // cardName.innerHTML = professional.proName;
 
   // -------- div card-pro-data-evaluation - INÍCIO --------
