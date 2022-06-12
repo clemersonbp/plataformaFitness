@@ -304,23 +304,13 @@ export function searchLocal(selectedValue){
         var cities = []
         queryCliente.forEach((doc) => {
           const user = doc.data();
-          //use this on next function like this
-          var userData =
-          {
-            nome: user.nomeCad,
-            sobrenome: user.sobrenomeCad,
-            cpf: user.cpfCad,
-            telefone: user.telefoneCad,
-            email: user.emailCad,
-            endereco: user.enderecoCad,
-            numeroResid: user.numeroResiCad,
-            cep: user.cepCad,
-            complemento: user.complementoCad,
-            bairro: user.bairroCad,
-            cidade: user.cidadeCad,
-            uf: user.ufCad
-          };
-          cities.push(user.cidadeCad);
+  
+          if(cities.includes(user.cidadeCad)){
+            
+          }else{
+            cities.push(user.cidadeCad);
+          }
+          
           //console.log('userData', userData);
          // console.log(cities);
         });
@@ -330,7 +320,7 @@ export function searchLocal(selectedValue){
 
 export function searchProfessionals(tipo, cidade){
 
-  const cliente = query(collection(db, tipo), where('cidadeCad', '!=', cidade));
+  const cliente = query(collection(db, tipo), where('cidadeCad', '==', cidade));
 
       (async () => {
         const queryCliente = await getDocs(cliente);
@@ -340,7 +330,7 @@ export function searchProfessionals(tipo, cidade){
           //use this on next function like this
           var professionalInfo =
           {
-            nome: user.nomeCad,
+            proName: user.nomeCad,
             sobrenome: user.sobrenomeCad,
             cpf: user.cpfCad,
             telefone: user.telefoneCad,
@@ -349,9 +339,11 @@ export function searchProfessionals(tipo, cidade){
             numeroResid: user.numeroResiCad,
             cep: user.cepCad,
             complemento: user.complementoCad,
-            bairro: user.bairroCad,
-            cidade: user.cidadeCad,
-            uf: user.ufCad
+            proDistrict: user.bairroCad,
+            proCity: user.cidadeCad,
+            uf: user.ufCad,
+            occupationArea:user.experienciaCad,
+            serviceValue: user.planoMensalCad,
           };
           availableProfessionals.push(professionalInfo);
           //console.log('userData', userData);
@@ -359,6 +351,10 @@ export function searchProfessionals(tipo, cidade){
         });
         sessionStorage.setItem('availableProfessionals', JSON.stringify(availableProfessionals));   
       })();
+
+      setTimeout(() => {
+        window.location.replace('resultados.html');
+      }, 1000);
 
 }
 

@@ -53,6 +53,13 @@ img {
   display: block;
 }
 
+.card-pro-photo-default{
+  display: block;
+  background-image: url(../assets/pro-portrait-1x1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .card-occupation-area {
   grid-column: 1 / -1;
   grid-row: 2 / 4;
