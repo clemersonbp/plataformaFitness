@@ -162,9 +162,21 @@ img {
   display: block;
 }
 
+.card-pro-data-address {
+  display: grid;
+}
+
 /* .checked {
   color: orange;
 } */
+
+#evaluationText {
+  margin-left: 4px;
+}
+
+#cardCity {
+
+}
 
 
 fieldset, label { 
@@ -227,6 +239,7 @@ fieldset, label {
 }
 
 .estrelas {      
+  display: contents;
   top: 0;
   left: 0;
   width: 100%;
@@ -234,7 +247,7 @@ fieldset, label {
 }
 
 #stella {
---percent: 90%;
+  --percent: 90%;
 }
 
 .star {
@@ -243,7 +256,7 @@ fieldset, label {
   font-size: 16px;
   font-family: FontAwesome;
   line-height: 1;
-
+  /* --percent: 90%; */
 }
 
 .star::before { 
