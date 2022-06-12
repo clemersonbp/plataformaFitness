@@ -294,6 +294,77 @@ export function saveEditedProfile (uid, payload) {
 }
 
 
+export function searchLocal(selectedValue){
+
+  //const optionSelected = query(collection(db, 'profissionais A. Esportiva'), where('cidadeCad', '==', 'Canela'));  
+
+  const cliente = query(collection(db, selectedValue), where('cidadeCad', '!=', ""));
+      (async () => {
+        const queryCliente = await getDocs(cliente);
+        var cities = []
+        queryCliente.forEach((doc) => {
+          const user = doc.data();
+          //use this on next function like this
+          var userData =
+          {
+            nome: user.nomeCad,
+            sobrenome: user.sobrenomeCad,
+            cpf: user.cpfCad,
+            telefone: user.telefoneCad,
+            email: user.emailCad,
+            endereco: user.enderecoCad,
+            numeroResid: user.numeroResiCad,
+            cep: user.cepCad,
+            complemento: user.complementoCad,
+            bairro: user.bairroCad,
+            cidade: user.cidadeCad,
+            uf: user.ufCad
+          };
+          cities.push(user.cidadeCad);
+          //console.log('userData', userData);
+         // console.log(cities);
+        });
+        sessionStorage.setItem('availableCities', JSON.stringify(cities));   
+      })();
+}
+
+export function searchProfessionals(tipo, cidade){
+
+  const cliente = query(collection(db, tipo), where('cidadeCad', '!=', cidade));
+
+      (async () => {
+        const queryCliente = await getDocs(cliente);
+        var availableProfessionals = []
+        queryCliente.forEach((doc) => {
+          const user = doc.data();
+          //use this on next function like this
+          var professionalInfo =
+          {
+            nome: user.nomeCad,
+            sobrenome: user.sobrenomeCad,
+            cpf: user.cpfCad,
+            telefone: user.telefoneCad,
+            email: user.emailCad,
+            endereco: user.enderecoCad,
+            numeroResid: user.numeroResiCad,
+            cep: user.cepCad,
+            complemento: user.complementoCad,
+            bairro: user.bairroCad,
+            cidade: user.cidadeCad,
+            uf: user.ufCad
+          };
+          availableProfessionals.push(professionalInfo);
+          //console.log('userData', userData);
+         // console.log(cities);
+        });
+        sessionStorage.setItem('availableProfessionals', JSON.stringify(availableProfessionals));   
+      })();
+
+}
+
+
+
+
 /// / TESTES DE CONSULTA DE BANCO DE DADOS ////
 
 // Create a reference to the cities collection

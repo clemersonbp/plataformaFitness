@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js';
-import { login, logoff, passwordRecovery } from './firebase.js';
+import { login, logoff, passwordRecovery, searchLocal, searchProfessionals } from './firebase.js';
 
 $(document).ready(function () {
   // only way that i got to work was putting the config in here, onAuthStateChanged works similar to an observable,
@@ -137,5 +137,48 @@ $('#btnProfile').click(function () {
   setTimeout(() => {
     window.location.replace('perfilCliente.html');
   }, 500);
-})
-;
+});
+
+
+//SEARCH
+//GET THE TIPE OF SERVICE, CHECK ON DB AND RETURN AVAILABLE CITIES TO SET THE OPTIONS AVAILABLE
+$('#tipo').find('option').click(function () {
+
+  $("#local").empty();
+  var optionSelected = $(this);
+
+  var valueSelected  = optionSelected.val();
+  var textSelected   = optionSelected.text();
+  //sessionStorage.removeItem('availableCities');
+  searchLocal(valueSelected);
+
+ const cities = JSON.parse(sessionStorage.getItem('availableCities'));
+ setAvailableOptions(cities)
+  
+});
+
+
+$('#search').click(function () {
+  var tipo = $('select[name=tipo] option').filter(':selected').val()
+  var cidade = $('select[name=local] option').filter(':selected').val()
+  console.log(tipo,cidade);
+
+  searchProfessionals(tipo, cidade);
+
+});
+
+
+function setAvailableOptions(listCities){
+  listCities.forEach(city => {
+    $("#local").append($('<option>',{
+      value: city,
+      text: city
+    }))
+  });
+
+  //Clear the session storage to get new cities
+  sessionStorage.removeItem('availableCities');
+
+}
+
+
