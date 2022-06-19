@@ -14,16 +14,6 @@ function formataCPF(cpf) {
 $(document).ready(function () {
   loadInfo();
 });
-// var btnSair = document.querySelector('#btnSair');
-
-// btnSair.addEventListener('click', function (event) {
-//   logoff();
-// });
-
-// Esconder login-result-popup
-// document.querySelector('.popup.logout-result .close-btn').addEventListener('click', function () {
-//   document.querySelector('.popup.logout-result').classList.remove('active')
-// });
 
 function loadInfo() {
   const userData = JSON.parse(sessionStorage.getItem('profissionalSelecionado'));
@@ -39,6 +29,7 @@ function loadInfo() {
   $('#user-title-email').text(userData.email);
   $('#user-nome').text(fullName);
   $('#user-email').text(userData.email);
+  $('#user-telefone').text(userData.telefone);
   $('#user-cep').text(userData.cep);
   $('#user-address').text(userData.endereco);
   $('#user-number').text(userData.numeroResid);
@@ -50,75 +41,26 @@ function loadInfo() {
   $('#mensal').text(userData.planoMensal);
   $('#trimestral').text(userData.planoTrimestral);
   $('#semestral').text(userData.planoSemestral)
+
+  console.log(userData.telefone);
+  const numero = userData.telefone
+  const numeroString = 'https://wa.me/' + numero
+  var linkWA = document.querySelector('.linkWA');
+  linkWA.setAttribute('href', numeroString);
 }
 
+$('#sendMessage').click(function () {
+  showModalProfile();
+});
 
-// $('#editProfile').click(function () {
-//   populateModalProfile();
-//   showModalProfile();
-// });
+$('.close-btn').click(function () {
+  hideModalProfile();
+});
 
-// $('.close-btn').click(function () {
-//   // clearModalProfile()
-//   hideModalProfile();
-// });
+function showModalProfile() {
+  $('.popup').addClass('active');
+}
 
-// $('#btnCancelar').click(function () {
-//   // clearModalProfile()
-//   hideModalProfile();
-// });
-
-// $('#btnSalvar').click(function () {
-//   let payload = {};
-//   const userUid = JSON.parse(sessionStorage.getItem('uid'));
-
-//   payload =
-//   {
-//     nome: proName.value,
-//     sobrenome: sobrenome.value,
-//     telefone: telefone.value,
-//     email: email.value,
-//     numeroResid: numero.value,
-//     cep: cep.value,
-//     complemento: complemento.value,
-//     bairro: bairro.value,
-//     cidade: cidade.value,
-//     uf: uf.value
-//   };
-  
-
-//   saveEditedProfile(userUid, payload);
-// });
-
-// function showModalProfile() {
-//   $('.popup').addClass('active');
-// }
-
-// function hideModalProfile() {
-//   // clearModalProfile()
-//   $('.popup').removeClass('active');
-// }
-
-// function populateModalProfile() {
-//   const userData = JSON.parse(sessionStorage.getItem('userData'));
-
-//   userData.cpf = formataCPF(userData.cpf);
-
-//   $('#nome').val(userData.nome);
-//   $('#sobrenome').val(userData.sobrenome);
-//   $('#email').val(userData.email);
-//   $('#cpf').val(userData.cpf);
-//   $('#cnpj').val(userData.cnpj);
-//   $('#telefone').val(userData.telefone);
-//   $('#instFinaceira').val(userData.instFinaceira);
-//   $('#agencia').val(userData.agencia);
-//   $('#conta').val(userData.conta);
-//   $('#pix').val(userData.pix);
-//   $('#cep').val(userData.cep);
-//   $('#endereco').val(userData.endereco);
-//   $('#numero').val(userData.numeroResid);
-//   $('#cidade').val(userData.cidade);
-//   $('#bairro').val(userData.bairro);
-//   $('#uf').val(userData.uf);
-//   $('#complemento').val(userData.complemento);
-// }
+function hideModalProfile() {
+  $('.popup').removeClass('active');
+}

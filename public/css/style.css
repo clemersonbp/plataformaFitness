@@ -172,3 +172,28 @@ span a {
   margin-right: 20px;
   background-color: #1b1474;
 }
+
+/* Vitrine */
+.content-line {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-line a {
+  background-color: #f0f2f5;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 5px;
+  height: 70px;
+  width: 90px;
+  border: none;
+  align-items: center;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.content-line img {
+  width: 50px;
+  margin: 10px 10px 10px 10px;
+}
