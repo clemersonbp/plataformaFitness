@@ -1,0 +1,57 @@
+.product-section p,
+.product-section span {
+  margin: 0 !important
+}
+
+.choose-service {
+  margin: 0.5rem 0;
+}
+
+.choose-payment-form {
+  display: grid;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1rem 0 3rem;
+}
+
+.choose-payment-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.new-credit-card-data {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+  gap: 0.5rem;
+  width: 400px;
+}
+
+.choose-installments { 
+  margin-bottom: 3rem;
+}
+
+.payment-section {
+  display: grid;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+#credit-card-cvv-number {
+  width: 50px;
+}
+
+#proceed-hiring{ 
+  width: 100%;
+}
+
+#cdc-proceed-payment {
+  width: 100%;
+}
+
+#boleto-proceed-payment,
+#pix-proceed-payment {
+  width: 100%;
+  margin-top: 3rem;
+}
