@@ -9,28 +9,30 @@ paymentType.click(function(){
   $('#proceed-hiring').prop('disabled', false)
 });
 
+var isUserLoggedIn = { state: false };
 $('#proceed-hiring').click(function() {
-  var isUserLoggedIn = true;
+  console.log('"Continuar" clicado');
+  console.log('isUserLoggedIn', isUserLoggedIn);
   
-  if (isUserLoggedIn) {
-    console.log('"Continuar" clicado');
-    console.log('paymentTypeSelected', paymentTypeSelected);
-    
-    if (paymentTypeSelected === 'cdc') {
-      window.location.href = './selecaoDeCDC.html'
-    } else if (paymentTypeSelected === 'boleto') {
-      window.location.href = './solicitarBoleto.html'
-    } else {
-      window.location.href = './solicitarPix.html'
-    }
-
-    setTimeout(() => {
-      window.location.href
-    }, 1000)
+  if (paymentTypeSelected === 'cdc') {
+    window.location.href = './selecaoDeCDC.html'
+  } else if (paymentTypeSelected === 'boleto') {
+    window.location.href = './solicitarBoleto.html'
   } else {
-    document.querySelector('.popup').classList.add('active');
-    var isUserLoggedIn = true;
+    window.location.href = './solicitarPix.html'
   }
+
+  setTimeout(() => {
+    window.location.href
+  }, 1000)
+
+  // if (isUserLoggedIn.state === true) {
+  //   console.log('paymentTypeSelected', paymentTypeSelected);
+    
+  // } else {
+  //   document.querySelector('.popup').classList.add('active');
+  //   isUserLoggedIn.state = true;
+  // }
 
 });
 

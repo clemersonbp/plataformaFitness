@@ -64,3 +64,11 @@ function showModalProfile() {
 function hideModalProfile() {
   $('.popup').removeClass('active');
 }
+
+$('#hire-pro-services').click(function() {
+
+  setTimeout(() => {
+    window.location.href = './contratacaoServicos.html'
+  }, 1000)
+
+});

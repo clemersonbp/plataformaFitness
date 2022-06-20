@@ -41,12 +41,12 @@
 
   <main class="content">
 
-    <div class="">
+    <div class="product-section">
       <p>Você está contratando</p>
       <h1>ELABORAÇÃO DE TREINOS</h1>
       <p>de</p>
-      <h1>Julio Muzy</h1>
-      <p><span>Plano Semestral</span>  R$<span>1700.00</span></p>
+      <h1>Julio Ferreira</h1>
+      <p><span>Plano Semestral</span>  R$<span>300,00</span></p>
     </div>
 
     <div class="payment-section">
@@ -55,18 +55,18 @@
         <input type="text" id="credit-card-name" placeholder=" Nome impresso no cartão" required>
         <label for="exp-date">Data de Vencimento:</label>
         <div>
-          <input type="month" id="exp-date" required>
+          <input type="month" id="exp-date" placeholder="ex: 06/2029"required>
           <input type="number" id="credit-card-cvv-number" placeholder=" CVV" required>
         </div>
-        <input type="number" id="credit-card-owner-cpf" placeholder=" CPF do titular do cartão" required>
+        <input type="number" id="credit-card-owner-cpf" placeholder=" CPF do titular do cartão (somente números)" required>
       </form>
   
       <div class="choose-installments">
         <select class="selects" name="installments" id="installments">
           <option value="selecione seu plano" selected>Em quantas vezes?</option>
-          <option value="mensal">1x <span>1700,00</span> (s/ juros)</option>
-          <option value="trimensal">2x <span>892,50</span> (c/ juros) = R$ <span>1.785,00</span></option>
-          <option value="semestral">3x <span>600,95</span> (c/ juros) = R$ <span>1.802,85</span></option>
+          <option value="one-time">1x <span>300,00</span> (s/ juros)</option>
+          <option value="two-times">2x <span>157,50</span> (c/ juros) = R$ <span>315,00</span></option>
+          <option value="three-times">3x <span>108,00</span> (c/ juros) = R$ <span>324,00</span></option>
         </select>
       </div>
   

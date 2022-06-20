@@ -1,9 +1,6 @@
-h1, p {
-  margin: 0;
-}
-
-button {
-  width: 100%;
+.product-section p,
+.product-section span {
+  margin: 0 !important
 }
 
 .choose-service {
@@ -45,7 +42,16 @@ button {
   width: 50px;
 }
 
+#proceed-hiring{ 
+  width: 100%;
+}
+
+#cdc-proceed-payment {
+  width: 100%;
+}
+
 #boleto-proceed-payment,
 #pix-proceed-payment {
+  width: 100%;
   margin-top: 3rem;
 }
