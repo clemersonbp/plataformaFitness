@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+  <title>Plataforma Fitness</title>
+
+  <link rel="stylesheet" href="./css/style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <a class="header__logo-link" href="./index.html">
+      <img src="../assets/logo.svg" alt="Logo PlataformaFitness">
+    </a>
+
+    <nav class="header__links">
+      <a href="./inscreverse.html">Inscrever-se</a>
+      <button id="show-login">Entrar</button>
+    </nav>
+
+    <div class="header__links-loggedIn">
+      <p id="clientName" class="header__welcome"></p>
+      <input type="text" placeholder="O que você procura?">
+    </div>
+
+    <nav class="header__links-loggedIn"> 
+      <button id="btnProfile">Meu Perfil</button>
+      <button id="btnSair">Sair</button>
+    </nav>
+
+  </header>
+
+  <main class="content">
+
+    <div class="">
+      <p>Você está contratando</p>
+      <h1>ELABORAÇÃO DE TREINOS</h1>
+      <p>de</p>
+      <h1>Julio Muzy</h1>
+    </div>
+
+    <div class="choose-service">
+      <select class="selects" name="plano" id="plano">
+        <option value="selecione seu plano" selected>Selecione o seu plano:</option>
+        <option value="mensal">Mensal... <span>350,00</span></option>
+        <option value="trimensal">Trimensal... <span>350,00</span></option>
+        <option value="semestral">Semestral... <span>350,00</span></option>
+      </select>
+    </div>
+
+    <div class="choose-payment-form">
+      <p>Escolha sua forma de pagamento:</p>
+      <div class="choose-payment-option">
+        <input type="radio" name="payment-option" value="cdc" id="cdc">
+        <label for="cdc">Cartão de crédito</label>
+      </div>
+      <div class="choose-payment-option">
+        <input type="radio" name="payment-option" value="boleto" id="boleto">
+        <label for="boleto">Boleto</label>
+      </div>
+      <div class="choose-payment-option">
+        <input type="radio" name="payment-option" value="pix" id="pix">
+        <label for="pix">Pix</label>
+      </div>
+    </div>
+
+    <button id="proceed-hiring">Continuar</button>
+
+    <div class="popup">
+      <div class="close-btn">&times;</div>
+      <div class="form">
+        <h2>Faça login na sua conta:</h2>
+        <div class="form-element">
+          <input type="text" id="email" placeholder="e-mail" required>
+        </div>
+        <div class="form-element">
+          <input type="password" id="password" placeholder="senha" required>
+        </div>
+        <div class="form-element">
+          <button class="btn" id="btnEntrar">Entrar</button>
+        </div>
+        <div class="form-element">
+          <a id="forgot-password" href="#">Esqueceu sua senha?</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup password-recovery">
+      <div class="close-btn">&times;</div>
+      <div class="form">
+        <p>Esqueceu a senha da sua conta?</p>
+        <p>Digite seu endereço de e-mail e nós lhe enviaremos um link de recuperação.</p>
+        <div class="form-element">
+          <input type="text" id="recovery-email" placeholder="e-mail">
+        </div>
+        <div class="form-element">
+          <button class="btn" id="btn-send-recovery">Enviar e-mail de recuperação</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup login-result">
+      <div class="close-btn">&times;</div>
+      <span id="login-result-msg"></span>
+    </div>
+
+    <div class="popup password-recovery-result">
+      <div class="close-btn">&times;</div>
+      <span id="recovery-result-msg"></span>
+    </div>
+
+    <div class="popup logout-result">
+      <span id="logout-result-msg"></span>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>Plataforma Fitness - Since 2022</p>
+  </footer>
+  <!-- jquery Import -->
+  <script type="module" src="./libs/jquery.js"></script>
+  <script type="module" src="./index.js"></script>
+  <script type="module" src="./contratacaoServicos.js"></script>
+</body>
+
+</html>
