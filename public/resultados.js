@@ -33,7 +33,7 @@ $(document).ready(function(){
     })
     setTimeout(() => {
       window.location.href = './vitrineProfissional.html'
-    }, 1000)
+    }, 500)
   })
 
 })
@@ -104,8 +104,12 @@ console.log(searchResults);
 searchResults.forEach(professional => {
 
   // card e seus elementos
+  var linkProfile = document.createElement('a')
+  linkProfile.setAttribute('class', 'linkVitrine');
+
   var card = document.createElement('article');
   card.setAttribute('class', 'card');
+  linkProfile.appendChild(card);
 
   // div card-pro-photo
   var cardProPhoto = document.createElement('div');
@@ -133,11 +137,7 @@ searchResults.forEach(professional => {
   // h2 > span card-name
   var cardName = document.createElement('span');
   cardName.setAttribute('id', 'card-name');
-    // cardProDataName.appendChild(cardName);
-    var linkProfile = document.createElement('a')
-    linkProfile.setAttribute('class', 'linkVitrine');
-    linkProfile.appendChild(cardName);
-    cardProDataName.appendChild(linkProfile)
+    cardProDataName.appendChild(cardName);
   // cardName.innerHTML = professional.proName;
 
   // -------- div card-pro-data-evaluation - INÍCIO --------
@@ -296,6 +296,6 @@ searchResults.forEach(professional => {
 
   // var body = $(body);
   // document.body.appendChild(card);
-  $('main').append(card);
+  $('main').append(linkProfile);
 });
 }

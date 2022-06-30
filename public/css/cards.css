@@ -20,7 +20,15 @@ img {
 }
 
 .search-results-title {
+}
 
+a {
+  width: auto;
+  height: auto;
+  color: #1b1474;
+  background-color: #fff;
+  text-align: left;
+  padding: 0;
 }
 
 .card {
@@ -32,7 +40,7 @@ img {
   border: 1px solid #eaeaea;
   border-radius: 8px;
   padding: 24px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.10);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
@@ -53,9 +61,9 @@ img {
   display: block;
 }
 
-.card-pro-photo-default{
+.card-pro-photo-default {
   display: block;
-  background-image: url(../assets/pro-portrait-1x1.jpg);
+  background-image: url('../assets/pro-portrait-1x1.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -96,7 +104,7 @@ img {
     align-items: center;
   }
   .card-pro-photo {
-    width: 100%
+    width: 100%;
   }
 }
 
@@ -139,11 +147,11 @@ img {
   .card {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 2fr 1fr;
-  
+
     border: 1px solid #eaeaea;
     border-radius: 8px;
     padding: 24px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.10);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -182,25 +190,26 @@ img {
 }
 
 #cardCity {
-
 }
 
-
-fieldset, label { 
-  margin: 0; 
-  padding: 0; 
+fieldset,
+label {
+  margin: 0;
+  padding: 0;
 }
 
 /****** Style Star Rating Widget *****/
 
-.rating { 
+.rating {
   display: inline-block;
   border: none;
   margin-right: 4px;
 }
 
-.rating > input { display: none; } 
-.rating > label:before { 
+.rating > input {
+  display: none;
+}
+.rating > label:before {
   margin: 5px 2px;
   font-size: 1rem;
   font-family: FontAwesome;
@@ -208,27 +217,30 @@ fieldset, label {
   content: "\f005";
 }
 
-.rating > .half:before { 
+.rating > .half:before {
   content: "\f089";
   position: absolute;
 }
 
-.rating > label { 
-  color: #ddd; 
- float: right; 
+.rating > label {
+  color: #ddd;
+  float: right;
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
 
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+.rating:not(:checked) > label:hover ~ label {
+  color: #ffd700;
+} /* hover previous stars in list */
 
 .rating > input:checked + label:hover, /* hover current star when changing rating */
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
-.rating > input:checked ~ label:hover ~ label { color: #FFD700;  } 
-
+.rating > input:checked ~ label:hover ~ label {
+  color: #ffd700;
+}
 
 /* // ***** NEW STARS ***** // */
 .barra {
@@ -242,15 +254,19 @@ fieldset, label {
 .bg {
   float: left;
   height: 20px;
-  background: linear-gradient(90deg, #f56700 var(--percent), #8E8E8E var(--percent));    
+  background: linear-gradient(
+    90deg,
+    #f56700 var(--percent),
+    #8e8e8e var(--percent)
+  );
 }
 
-.estrelas {      
+.estrelas {
   display: contents;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;  
+  height: 100%;
 }
 
 #stella {
@@ -266,12 +282,13 @@ fieldset, label {
   /* --percent: 90%; */
 }
 
-.star::before { 
-  content: '\f006 \f006 \f006 \f006 \f006';
+.star::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
   letter-spacing: 4px;
-  background: linear-gradient(90deg, 
-  #f56700 var(--percent),
-  #8E8E8E var(--percent)
+  background: linear-gradient(
+    90deg,
+    #f56700 var(--percent),
+    #8e8e8e var(--percent)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
