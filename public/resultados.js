@@ -16,7 +16,7 @@
 //   $('#evaluationText').html(usersEvaluationsText);
 // });
 
-// avaliação é recebida e o valor dupicado antes de entrar no BD
+// avaliação é recebida e o valor duplicado antes de entrar no BD
 // avaliação é de 1 a 5
 var searchResults;
 $(document).ready(function(){
