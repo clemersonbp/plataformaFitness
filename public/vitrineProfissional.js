@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 function loadInfo() {
   const userData = JSON.parse(sessionStorage.getItem('profissionalSelecionado'));
-  console.log(userData);
+  console.log('ProData', userData);
 
   var fullName = userData.proName + ' ' + userData.sobrenome;
   var name = userData.nome;
@@ -27,14 +27,11 @@ function loadInfo() {
 
   $('#user-title-nome').text(fullName);
   $('#user-title-email').text(userData.email);
-  $('#user-nome').text(fullName);
-  $('#user-email').text(userData.email);
-  $('#user-telefone').text(userData.telefone);
   $('#user-cep').text(userData.cep);
   $('#user-address').text(userData.endereco);
   $('#user-number').text(userData.numeroResid);
   $('#user-city').text(userData.cidade);
-  $('#user-neighborhood').text(userData.bairro);
+  $('#user-neighborhood').text(userData.proDistrict);
   $('#user-state').text(userData.uf);
   $('#about').text(userData.aboutMe);
   $('#exp').text(userData.occupationArea);
