@@ -28,9 +28,6 @@ let validNumeroResi = false
 let cep = document.querySelector('#cep')
 let validCep = false
 
-let complemento = document.querySelector('#complemento')
-let validComplemento = false
-
 let bairro = document.querySelector('#bairro')
 let validBairro = false
 
@@ -88,11 +85,7 @@ cep.addEventListener('keyup', () => {
     validCep = true
   }
 })
-complemento.addEventListener('keyup', () => {
-  if (complemento.value) {
-    validComplemento = true
-  }
-})
+
 bairro.addEventListener('keyup', () => {
   if (bairro.value) {
     validBairro = true
@@ -120,8 +113,7 @@ function cadastrar() {
 
   if (validNome && validSobrenome && validCpf && validTelefone
     && validEmail && validSenha && validEndereco && validNumeroResi
-    && validCep && validComplemento && validBairro && validCidade
-    && validUf) {
+    && validCep && validBairro && validCidade && validUf) {
 
     let listaUser = {}
 
@@ -171,10 +163,5 @@ function cadastrar() {
     document.querySelector('.popup.register .close-btn').addEventListener('click', function () {
       document.querySelector('.popup.register').classList.remove('active')
     });
-    
-    // msgError.setAttribute('style', 'display: block')
-    // msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
-    // msgSuccess.innerHTML = ''
-    // msgSuccess.setAttribute('style', 'display: none')
   }
 }

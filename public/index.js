@@ -127,8 +127,9 @@ function changeHeaderStyle () {
   // GETS THE USER INFO
 
   const userData = JSON.parse(sessionStorage.getItem('userData'));
-  // var fullName = userData.nome + ' ' + userData.sobrenome;
+  console.log('userData', userData);
   var name = userData.nome;
+  // var fullName = userData.nome + ' ' + userData.sobrenome;
 
   $('#clientName').text('Olá, ' + name);
 }

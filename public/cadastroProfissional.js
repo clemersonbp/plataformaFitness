@@ -22,6 +22,21 @@ let validEmail = false
 let senha = document.querySelector('#senha')
 let validSenha = false
 
+let whatsapp = document.querySelector('#whatsapp')
+let validWhatsapp = false
+
+let telegram = document.querySelector('#telegram')
+let validTelegram = false
+
+let instagram = document.querySelector('#instagram')
+let validInstagram = false
+
+let facebook = document.querySelector('#facebook')
+let validFacebook = false
+
+let twitter = document.querySelector('#twitter')
+let validTwitter = false
+
 let instFinanceira = document.querySelector('#instFinanceira')
 let validInstFinanceira = false
 
@@ -73,11 +88,7 @@ cpf.addEventListener('keyup', () => {
     validCpf = true
   }
 })
-cnpj.addEventListener('keyup', () => {
-  if (cnpj.value) {
-    validCnpj = true
-  }
-})
+
 telefone.addEventListener('keyup', () => {
   if (telefone.value) {
     validTelefone = true
@@ -128,11 +139,6 @@ cep.addEventListener('keyup', () => {
     validCep = true
   }
 })
-complemento.addEventListener('keyup', () => {
-  if (complemento.value) {
-    validComplemento = true
-  }
-})
 bairro.addEventListener('keyup', () => {
   if (bairro.value) {
     validBairro = true
@@ -158,9 +164,9 @@ function cadastrar() {
   let showRegisterPopup = document.querySelector('.popup.register').classList.add('active');
   let registerResultMsg = document.querySelector('#professional-register-popup-msg')
 
-  if (validNome && validSobrenome && validCpf && validCnpj && validTelefone
+  if (validNome && validSobrenome && validCpf && validTelefone
     && validEmail && validSenha && validEndereco && validNumeroResi
-    && validCep && validComplemento && validBairro && validCidade
+    && validCep && validBairro && validCidade
     && validUf && validInstFinanceira && validAgencia && validConta && validPix) {
 
 
@@ -175,6 +181,11 @@ function cadastrar() {
         telefoneCad: telefone.value,
         emailCad: email.value,
         senhaCad: senha.value,
+        whatsAppCad: whatsapp.value,
+        telegramCad: telegram.value,
+        instagramCad: instagram.value,
+        facebookCad: facebook.value,
+        twitterCad: twitter.value,
         instFinanceiraCad: instFinanceira.value,
         agenciaCad: agencia.value,
         contaCad: conta.value,

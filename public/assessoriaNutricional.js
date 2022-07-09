@@ -1,7 +1,7 @@
 //IMPORT FUNCTIONS FROM FIREBASE/DATABASE FILE.
 import { createProfessionalNut } from "./firebase.js"
 
-let cref = document.querySelector('#cref')
+let cref = document.querySelector('#crn')
 let validCref = false
 
 let planoMensal = document.querySelector('#planoMensal')
@@ -69,6 +69,7 @@ function cadastrar() {
     
     Object.assign(listaUserProfissional,{
       crefCad: cref.value,
+      servico: 'Elaboração de Plano Alimentar',
       planoMensalCad: planoMensal.value,
       planoTrimestralCad: planoTrimestral.value,
       planoSemestralCad: planoSemestral.value,
@@ -85,11 +86,6 @@ function cadastrar() {
     showRegisterPopup;
     registerResultMsg.innerHTML = 'Cadastro realizado!'
 
-    // msgSuccess.setAttribute('style', 'display: block')
-    // msgSuccess.innerHTML = '<strong>Cadastrando Profissional...</strong>'
-    // msgError.setAttribute('style', 'display: none')
-    // msgError.innerHTML = ''
-
     setTimeout(() => {
       window.location.href = './index.html'
     }, 2000)
@@ -104,10 +100,5 @@ function cadastrar() {
     document.querySelector('.popup.register .close-btn').addEventListener('click', function () {
       document.querySelector('.popup.register').classList.remove('active')
     });
-
-    // msgError.setAttribute('style', 'display: block')
-    // msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
-    // msgSuccess.innerHTML = ''
-    // msgSuccess.setAttribute('style', 'display: none')
   }
 }

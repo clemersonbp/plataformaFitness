@@ -174,10 +174,12 @@ searchResults.forEach(professional => {
   occupationAreaDescription.appendChild(cardOccupationAreaSpan);
   // -------- section occupation-area-title - FIM --------
   
-  var userScore = professional.evaluationTotal;
-  console.log(userScore);
+  // var userScore = professional.evaluationTotal;
+  var userScore = 5;
+  console.log('userScore', userScore);
   
-  var usersEvaluationsQtty = professional.evaluationsQtty;
+  // var usersEvaluationsQtty = professional.evaluationsQtty;
+  var usersEvaluationsQtty = 1;
   console.log(usersEvaluationsQtty);
   
   var userRating = (userScore / usersEvaluationsQtty) * 10 + '%';
