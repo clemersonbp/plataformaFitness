@@ -40,8 +40,8 @@
       <p>Você está contratando</p>
       <h1>ELABORAÇÃO DE TREINOS</h1>
       <p>de</p>
-      <h1>Julio Ferreira</h1>
-      <p><span>Plano Semestral</span> R$<span>300,00</span></p>
+      <h1 class="payment-pro-name">Zé Pequeno</h1>
+      <p><span class="payment-hired-plan-value">300,00</span></p>
     </div>
 
     <div class="payment-section">
@@ -58,10 +58,10 @@
 
       <div class="choose-installments">
         <select class="selects" name="installments" id="installments">
-          <option value="selecione seu plano" selected>Em quantas vezes?</option>
-          <option value="one-time">1x <span>300,00</span> (s/ juros)</option>
-          <option value="two-times">2x <span>157,50</span> (c/ juros) = R$ <span>315,00</span></option>
-          <option value="three-times">3x <span>108,00</span> (c/ juros) = R$ <span>324,00</span></option>
+          <option value="em-quantas-vezes" selected>Em quantas vezes?</option>
+          <option value="1" id="one-time">1x 300,00 (s/ juros)</option>
+          <option value="2" id="two-times">2x 157,50 (c/ juros) = R$ 315,00</option>
+          <option value="3" id="three-times">3x 108,00 (c/ juros) = R$ 324,00</option>
         </select>
       </div>
 
@@ -85,8 +85,9 @@
   </footer>
   <!-- jquery Import -->
   <script type="module" src="./libs/jquery.js"></script>
-  <script type="module" src="./index.js"></script>
-  <script type="module" src="./contratacaoServicos.js"></script>
+  <!-- <script type="module" src="./index.js"></script> -->
+  <!-- <script type="module" src="./contratacaoServicos.js"></script> -->
+  <script type="module" src="./selecaoDeCDC.js"></script>
   <script src="https://smtpjs.com/v3/smtp.js"></script>
 </body>
 
