@@ -46,15 +46,14 @@
 
     <div class="payment-section">
       <form class="new-credit-card-data">
-        <input type="number" id="credit-card-number" placeholder=" Número do cartão" required>
-        <input type="text" id="credit-card-name" placeholder=" Nome impresso no cartão" required>
+        <input type="number" id="credit-card-number" placeholder=" Número do cartão" autocomplete="off" required>
+        <input type="text" id="credit-card-name" placeholder=" Nome impresso no cartão"  autocomplete="off" required>
         <label for="exp-date">Data de Vencimento:</label>
         <div>
-          <input type="month" id="exp-date" placeholder="ex: 06/2029" required>
-          <input type="number" id="credit-card-cvv-number" placeholder=" CVV" required>
+          <input type="month" id="exp-date" placeholder="ex: 06/2029"  autocomplete="off" required>
+          <input type="number" id="credit-card-cvv-number" placeholder=" CVV"  autocomplete="off" required>
         </div>
-        <input type="number" id="credit-card-owner-cpf" placeholder=" CPF do titular do cartão (somente números)"
-          required>
+        <input type="number" id="credit-card-owner-cpf" placeholder=" CPF do titular do cartão (somente números)"  autocomplete="off" required>
       </form>
 
       <div class="choose-installments">
@@ -66,7 +65,7 @@
         </select>
       </div>
 
-      <button id="cdc-proceed-payment">Continuar</button>
+      <button id="cdc-proceed-payment" disabled>Continuar</button>
     </div>
 
     <div class="popup">
