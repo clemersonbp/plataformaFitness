@@ -1,82 +1,94 @@
 $('#proceed-hiring').prop('disabled', true)
 
-var paymentTypeSelected = ''
-
-var paymentType = $(".choose-payment-form :radio");
-paymentType.click(function(){
-  // console.log(this.value);
-  paymentTypeSelected = this.value
-  $('#proceed-hiring').prop('disabled', false)
+$(document).ready(function () {
+  loadInfo();
 });
 
-var isUserLoggedIn = { state: false };
-$('#proceed-hiring').click(function() {
-  console.log('"Continuar" clicado');
-  console.log('isUserLoggedIn', isUserLoggedIn);
+function loadInfo() {
+  const userData = JSON.parse(sessionStorage.getItem('profissionalSelecionado'));
+  console.log('ProData', userData);
+
+  var fullName = userData.proName + ' ' + userData.sobrenome;
+  var name = userData.nome;
+  $('#clientName').text('Olá, ' + name);
   
-  if (paymentTypeSelected === 'cdc') {
+  $('#service-hiring-pro-name').text(fullName);
+  $('#service-hiring-plan-one').text('Mensal'.padEnd(25, '.') + 'R$ ' + parseFloat(userData.planoMensal).toFixed(2));
+  $('#service-hiring-plan-two').text('Trimestral'.padEnd(25, '.') + 'R$ ' + parseFloat(userData.planoTrimestral).toFixed(2));
+  $('#service-hiring-plan-three').text('Semestral'.padEnd(25, '.') + 'R$ ' + parseFloat(userData.planoSemestral).toFixed(2))
+}
+
+var selectedPlan = 'selecione-seu-plano'
+var paymentType = ''
+
+$('#plano').change(function () {
+  selectedPlan = this.value
+
+  if (selectedPlan !== 'selecione-seu-plano' && paymentType !== '') {
+    $('#proceed-hiring').prop('disabled', false)
+  } else {
+    $('#proceed-hiring').prop('disabled', true)
+  }
+
+  if (selectedPlan !== 'selecione-seu-plano') {
+    sessionStorage.setItem('selectedPlan', JSON.stringify(selectedPlan));
+  }
+});
+
+$(".choose-payment-form :radio").change(function(){
+  paymentType = this.value
+
+  if (selectedPlan !== 'selecione-seu-plano' && paymentType !== '') {
+    $('#proceed-hiring').prop('disabled', false)
+  } else {
+    $('#proceed-hiring').prop('disabled', true)
+  }
+});
+
+const user = sessionStorage.getItem('uid');
+console.log('user', user);
+
+function isUserLoggedIn(user) {
+  if (user === null) {
+    document.querySelector('.popup').classList.add('active');
+  }
+}
+
+function proceedToPayment() {
+  if (paymentType === 'cdc') {
     window.location.href = './selecaoDeCDC.html'
-  } else if (paymentTypeSelected === 'boleto') {
+  } else if (paymentType === 'boleto') {
     window.location.href = './solicitarBoleto.html'
   } else {
     window.location.href = './solicitarPix.html'
   }
+}
 
-  setTimeout(() => {
-    window.location.href
-  }, 1000)
+$('#proceed-hiring').click(function() {
+  if (user === null) {
+    document.querySelector('.popup').classList.add('active');
+  } else {
+    if (paymentType === 'cdc') {
+      window.location.href = './selecaoDeCDC.html'
+    } else if (paymentType === 'boleto') {
+      window.location.href = './solicitarBoleto.html'
+    } else {
+      window.location.href = './solicitarPix.html'
+    }
 
-  // if (isUserLoggedIn.state === true) {
-  //   console.log('paymentTypeSelected', paymentTypeSelected);
-    
-  // } else {
-  //   document.querySelector('.popup').classList.add('active');
-  //   isUserLoggedIn.state = true;
-  // }
-
-});
-
-// $('.proceed-payment').prop('disabled', true)
-
-let cdcNumber = document.querySelector('#credit-card-number')
-let validCdcNumber = false
-let cdcExpDate = document.querySelector('#credit-card-name')
-let validCdcExpDate = false
-let cdcCpf = document.querySelector('#exp-date')
-let validCdcCpf = false
-let cdcCvv = document.querySelector('#credit-card-cvv-number')
-let validCdcCvv = false
-let cdcName = document.querySelector('#credit-card-owner-cpf')
-let validCdcName = false
-let cdcInstallments = document.querySelector('#installments')
-let validCdcInstallments = false
-
-cdcNumber.addEventListener('keyup', () => {
-  cdcNumber.value ? validCdcNumber = true : validCdcNumber = false
-})
-cdcExpDate.addEventListener('keyup', () => {
-  cdcExpDate.value ? validCdcExpDate = true : validCdcExpDate = false
-})
-cdcCpf.addEventListener('keyup', () => {
-  cdcCpf.value ? validCdcCpf = true : validCdcCpf = false
-})
-cdcCvv.addEventListener('keyup', () => {
-  cdcCvv.value ? validCdcCvv = true : validCdcCvv = false
-})
-cdcName.addEventListener('keyup', () => {
-  cdcName.value ? validCdcName = true : validCdcName = false
-})
-cdcInstallments.addEventListener('change', () => {
-  cdcInstallments.value ? validCdcInstallments = true : validCdcInstallments = false
-
-  if (validCdcNumber && validCdcExpDate && validCdcCpf && validCdcCvv && validCdcName && validCdcInstallments) {
-    $('#cdc-proceed-payment').prop('disabled', false)
+    setTimeout(() => {
+      window.location.href
+    }, 1000)
   }
 })
 
-$('#cdc-proceed-payment').click(function() {
+document.querySelector('.popup .close-btn').addEventListener('click', function () {
+  document.querySelector('.popup').classList.remove('active');
+});
 
-  let paymentData = {
+$('#boleto-proceed-payment').click(function() {  
+
+  var paymentData = {
     // falta pegar os dados do usuário
     cdcNumber: $('#credit-card-number').val(),
     cdcName: $('#credit-card-name').val(),
@@ -91,45 +103,20 @@ $('#cdc-proceed-payment').click(function() {
     //   window.location.href
     // }, 1000)
 });
-  
-  document.querySelector('.popup .close-btn').addEventListener('click', function () {
-    document.querySelector('.popup').classList.remove('active');
-  });
 
-  $('#boleto-proceed-payment').click(function() {  
+$('#pix-proceed-payment').click(function() {  
 
-    var paymentData = {
-      // falta pegar os dados do usuário
-      cdcNumber: $('#credit-card-number').val(),
-      cdcName: $('#credit-card-name').val(),
-      cdcExpDate: $('#exp-date').val(),
-      cdcCvv: $('#credit-card-cvv-number').val(),
-      cdcCpf: $('#credit-card-owner-cpf').val(),
-      cdcInstallments: $('#installments').val()
-    }
-  
-    document.querySelector('.popup').classList.add('active');
-    // setTimeout(() => {
-      //   window.location.href
-      // }, 1000)
-  });
+  var paymentData = {
+    // falta pegar os dados do usuário
+    cdcNumber: $('#credit-card-number').val(),
+    cdcName: $('#credit-card-name').val(),
+    cdcExpDate: $('#exp-date').val(),
+    cdcCvv: $('#credit-card-cvv-number').val(),
+    cdcCpf: $('#credit-card-owner-cpf').val(),
+    cdcInstallments: $('#installments').val()
+  }
 
-  $('#pix-proceed-payment').click(function() {  
-
-    var paymentData = {
-      // falta pegar os dados do usuário
-      cdcNumber: $('#credit-card-number').val(),
-      cdcName: $('#credit-card-name').val(),
-      cdcExpDate: $('#exp-date').val(),
-      cdcCvv: $('#credit-card-cvv-number').val(),
-      cdcCpf: $('#credit-card-owner-cpf').val(),
-      cdcInstallments: $('#installments').val()
-    }
-  
-    document.querySelector('.popup').classList.add('active');
-    // setTimeout(() => {
-      //   window.location.href
-      // }, 1000)
-  });
+  document.querySelector('.popup').classList.add('active');
+});
   
   

@@ -1,0 +1,53 @@
+let cdcNumber = document.querySelector('#credit-card-number')
+let validCdcNumber = false
+let cdcExpDate = document.querySelector('#credit-card-name')
+let validCdcExpDate = false
+let cdcCpf = document.querySelector('#exp-date')
+let validCdcCpf = false
+let cdcCvv = document.querySelector('#credit-card-cvv-number')
+let validCdcCvv = false
+let cdcName = document.querySelector('#credit-card-owner-cpf')
+let validCdcName = false
+let cdcInstallments = document.querySelector('#installments')
+let validCdcInstallments = false
+
+cdcNumber.addEventListener('keyup', () => {
+  cdcNumber.value ? validCdcNumber = true : validCdcNumber = false
+})
+cdcExpDate.addEventListener('keyup', () => {
+  cdcExpDate.value ? validCdcExpDate = true : validCdcExpDate = false
+})
+cdcCpf.addEventListener('keyup', () => {
+  cdcCpf.value ? validCdcCpf = true : validCdcCpf = false
+})
+cdcCvv.addEventListener('keyup', () => {
+  cdcCvv.value ? validCdcCvv = true : validCdcCvv = false
+})
+cdcName.addEventListener('keyup', () => {
+  cdcName.value ? validCdcName = true : validCdcName = false
+})
+cdcInstallments.addEventListener('change', () => {
+  cdcInstallments.value ? validCdcInstallments = true : validCdcInstallments = false
+
+  if (validCdcNumber && validCdcExpDate && validCdcCpf && validCdcCvv && validCdcName && validCdcInstallments) {
+    $('#cdc-proceed-payment').prop('disabled', false)
+  }
+})
+
+$('#cdc-proceed-payment').click(function() {
+
+  let paymentData = {
+    // falta pegar os dados do usuário
+    cdcNumber: $('#credit-card-number').val(),
+    cdcName: $('#credit-card-name').val(),
+    cdcExpDate: $('#exp-date').val(),
+    cdcCvv: $('#credit-card-cvv-number').val(),
+    cdcCpf: $('#credit-card-owner-cpf').val(),
+    cdcInstallments: $('#installments').val()
+  }
+
+  document.querySelector('.popup').classList.add('active');
+  // setTimeout(() => {
+    //   window.location.href
+    // }, 1000)
+});
