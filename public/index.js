@@ -15,8 +15,6 @@ import {
   searchProfessionals,
 } from "./firebase.js";
 
-var userLoggedIn = false;
-
 $(document).ready(function () {
   // only way that i got to work was putting the config in here, onAuthStateChanged works similar to an observable,
   // but calling the function on another file was returning always null, :(
@@ -68,8 +66,8 @@ var isLoginPopupActive = false;
 export function showLoginPopup() {
   if (!uid) {
     var btnLogin = document.querySelector("#show-login");
+    isLoginPopupActive = true
     btnLogin.addEventListener("click", function () {
-      isLoginPopupActive = true
       if (isPasswordPopupActive == false) {
         document.querySelector(".popup").classList.add("active");
       } else {
@@ -175,6 +173,7 @@ export function loginPopup() {
       // console.log(formData);
       login(formData);
     });
+    isLoginPopupActive = false
   }
 }
 loginPopup();

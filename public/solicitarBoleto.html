@@ -48,9 +48,17 @@
 
     <button id="boleto-proceed-payment">Solicitar código do boleto</button>
 
+    <div class="popup" id="showConfirmPopup">
+      <div class="close-btn">&times;</div>
+      <div class="form">
+        <h3>Tem certeza?</h3>
+        <div class="form-element">
+          <button class="btn" id="btnConfirmPurchase">Confirmar compra!</button>
+        </div>
+      </div>
     </div>
 
-    <div class="popup">
+    <div class="popup" id="purchaseConfirmationPopup">
       <div class="close-btn">&times;</div>
       <div class="form">
         <h3>SUCESSO!</h3>
@@ -59,6 +67,35 @@
       </div>
     </div>
 
+    <div class="container" hidden>
+      <div class="columns">
+        <div class="column is-half">
+          <form action="https://api.staticforms.xyz/submit" method="post" id="staticform">
+            <input type="hidden" name="accessKey" value="797c5831-6d99-4aea-8ee6-fd52b8d7493a">
+            <input type="hidden" name="subject" value="Plataforma Fitness: serviço contratado!">
+            <div class="field">
+              <label class="label">Contratante:</label>
+              <div class="control">
+                <input class="input" type="text" name="name" id="client-name" required>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Email:</label>
+              <div class="control">
+                <input class="input" type="email" name="email" id="client-email" required>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Detalhes da compra:</label>
+              <div class="control">
+                <textarea class="textarea" name="message" id="client-purchase-data" required></textarea>
+              </div>
+            </div>
+            <button class="button is-primary" type="Submit" id="btnSubmitForm">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
 
   </main>
 

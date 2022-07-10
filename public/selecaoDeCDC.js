@@ -2,14 +2,15 @@ import { changeHeaderStyle, logout } from './index.js';
 
 const userData = JSON.parse(sessionStorage.getItem('userData'))
 const proData = JSON.parse(sessionStorage.getItem('profissionalSelecionado'))
-var selectedPlan = ''
-var hiredPlanValue = ''
-const hiringData = []
+let selectedPlan = ''
+let hiredPlan = ''
+let hiredPlanValue = ''
 
 $(document).ready(function () {
   loadInfo()
   changeHeaderStyle()
   logout()
+  proceed()
 });
 
 function loadInfo() {
@@ -96,29 +97,74 @@ cdcInstallments.addEventListener('change', () => {
     $('#cdc-proceed-payment').prop('disabled', false)
   }
 })
+function proceed() {
+  $('#cdc-proceed-payment').click(function() {
+  
+    cdcNumber = $('#credit-card-number').val()
+    cdcName = $('#credit-card-name').val()
+    cdcExpDate = $('#exp-date').val()
+    cdcCvv = $('#credit-card-cvv-number').val()
+    cdcCpf = $('#credit-card-owner-cpf').val()
+    cdcInstallments = $('#installments').val()
+    hiredPlan = selectedPlan
+    hiredPlanValue = hiredPlanValue
 
-$('#cdc-proceed-payment').click(function() {
+    let clientName = document.querySelector('#client-name')
+    clientName.value = userData.nome + ' ' + userData.sobrenome
+    let clientEmail = document.querySelector('#client-email')
+    clientEmail.value = userData.email
+    let clientPurchaseData = document.querySelector('#client-purchase-data')
+    clientPurchaseData.innerHTML =
+    'CONTRATANTE: ' + userData.nome + ' ' + userData.sobrenome + '<br>' + 
+    'Serviço contratado: ' + hiredPlan + '<br>' + 
+    'Valor do serviço: ' + hiredPlanValue + '<br>' +
+    'CPF: ' + userData.cpf  + '<br>' + 
+    '...' + '<br><br>' +
+    'CONTRATADO: ' + proData.proName  + ' ' + proData.sobrenome + '<br>' + 
+    'CPF: ' + proData.cpf  + '<br>' + 
+    'e-mail: ' + proData.email  + '<br>' + 
+    'Contato: ' + proData.telefone  + '<br><br>' + 
+    '...' + '<br><br>' +
+    'DADOS PARA PAGAMENTO: '  + '<br>' + 
+    'Número do cartão: ' + cdcNumber  + '<br>' + 
+    'Nome impresso no cartão: ' + cdcName + '<br>' + 
+    'Data de vencimento do cartão: ' + cdcExpDate  + '<br>' + 
+    'Código CVV: ' + cdcCvv + '<br>' + 
+    'CPF do titular: ' + cdcCpf + '<br>' + 
+    'Número de parcelas: ' + cdcInstallments
+  
+    document.querySelector('#showConfirmPopup').classList.add('active');
+    document.querySelector('#btnConfirmPurchase').addEventListener('click', function () {
+      document.querySelector('#btnSubmitForm').click()
 
-  let paymentData = {
-    cdcNumber: $('#credit-card-number').val(),
-    cdcName: $('#credit-card-name').val(),
-    cdcExpDate: $('#exp-date').val(),
-    cdcCvv: $('#credit-card-cvv-number').val(),
-    cdcCpf: $('#credit-card-owner-cpf').val(),
-    cdcInstallments: $('#installments').val(),
-    hiredPlan: selectedPlan,
-    hiredPlanValue: hiredPlanValue
-  }
-
-  hiringData.push(proData)
-  hiringData.push(userData)
-  hiringData.push(paymentData)
-
-  console.log('hiringData', hiringData);
-
-  document.querySelector('.popup').classList.add('active');
-});
+      setTimeout(() => {
+        document.querySelector('#showConfirmPopup').classList.remove('active');
+        document.querySelector('#purchaseConfirmationPopup').classList.add('active');
+      }, 500)
+    });
+  });
+}
 
 document.querySelector('.popup .close-btn').addEventListener('click', function () {
   document.querySelector('.popup').classList.remove('active');
+});
+
+$("#staticform").submit(function(event) {
+  event.preventDefault();
+
+  $.ajax({
+    url: 'https://api.staticforms.xyz/submit',
+    type: "POST",
+    dataType: 'json',
+    data: $("#staticform").serialize(),
+    success: function(result) {
+      console.log('SUCESSO!');
+      setTimeout(() => {
+        window.location.href = './index.html'
+      }, 10000)
+    },
+    error: function(xhr, resp, text) {
+      alert(xhr, resp, text);
+    }
+  })
 });
