@@ -30,11 +30,13 @@
 }
 
 .header__links-loggedIn {
+  width: 120px;
+  height: 100%;
+  
   display: none;
-  /* display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  justify-content: space-around; */
+  justify-content: space-around;
 }
 
 .header__welcome {
