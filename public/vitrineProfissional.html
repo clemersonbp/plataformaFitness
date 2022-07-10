@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="./css/style.css">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -22,8 +24,13 @@
       <img src="./assets/logo.svg" alt="Logo PlataformaFitness">
     </a>
 
+    <nav class="header__links">
+      <a href="./inscreverse.html">Inscrever-se</a>
+      <button id="show-login">Entrar</button>
+    </nav>
+
     <nav class="header__links-loggedIn">
-      <button id="btnMenu" disabled>Menu</button>
+      <button id="btnProfile">Meu Perfil</button>
       <button id="btnSair">Sair</button>
     </nav>
   </header>
@@ -141,16 +148,11 @@
     </div>
   </main>
 
-
-
-
   <footer class="footer">
     <p>Plataforma Fitness - Since 2022</p>
   </footer>
 
-  <!-- jquery Import -->
-  <script type="module" src="./libs/jquery.js"></script>
-  <!-- //<script type="module" src="./index.js"></script> -->
+  <!-- <script type="module" src="./index.js"></script> -->
   <script type="module" src="./vitrineProfissional.js"></script>
 </body>
 
