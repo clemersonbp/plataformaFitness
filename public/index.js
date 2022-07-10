@@ -218,24 +218,43 @@ $("#btnProfile").click(function () {
 
 //SEARCH
 //GET THE TIPE OF SERVICE, CHECK ON DB AND RETURN AVAILABLE CITIES TO SET THE OPTIONS AVAILABLE
-$("#tipo")
-  .find("option")
-  .click(function () {
-    //Clear the session storage to get new cities
-    sessionStorage.removeItem("availableCities");
-    removeOptions();
-    var optionSelected = $(this);
+////////////////////////////DEPRECATED//////////////////////////////////////////////
+// setTimeout(() => {
+//   $("#tipo")
+//   .find("option")
+//   .click(function () {
+//     //Clear the session storage to get new cities
+//     sessionStorage.removeItem("availableCities");
+//     removeOptions();
+//     var optionSelected = $(this);
 
-    var valueSelected = optionSelected.val();
-    var textSelected = optionSelected.text();
-    //sessionStorage.removeItem('availableCities');
-    searchLocal(valueSelected);
+//     var valueSelected = optionSelected.val();
+//     var textSelected = optionSelected.text();
+//     //sessionStorage.removeItem('availableCities');
+//     searchLocal(valueSelected);
 
-    setTimeout(() => {
-      const cities = JSON.parse(sessionStorage.getItem("availableCities"));
-      setAvailableOptions(cities);
-    }, 500);
-  });
+//     setTimeout(() => {
+//       const cities = JSON.parse(sessionStorage.getItem("availableCities"));
+//       setAvailableOptions(cities);
+//     }, 500);
+//   });
+// },1000);
+
+$('#tipo').on('change', function() {
+  var value = $(this).val();
+
+  //Clear the session storage to get new cities
+  sessionStorage.removeItem("availableCities");
+  removeOptions();
+  
+  //build the cities options
+  searchLocal(value);
+
+  setTimeout(() => {
+    const cities = JSON.parse(sessionStorage.getItem("availableCities"));
+    setAvailableOptions(cities);
+  }, 1000);
+});
 
 $("#search").click(function () {
   var tipo = $("select[name=tipo] option").filter(":selected").val();
