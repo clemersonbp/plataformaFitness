@@ -1,7 +1,7 @@
 import { login, logoff, saveEditedProfile } from './firebase.js';
+import { changeHeaderStyle, logout } from './index.js';
 
-$('.header__links').hide();
-$('.header__links-loggedIn').show();
+const uid = sessionStorage.getItem('uid')
 
 function formataCPF (cpf) {
   // retira os caracteres indesejados
@@ -12,22 +12,13 @@ function formataCPF (cpf) {
 }
 
 $(document).ready(function () {
-  loadInfo();
+  loadInfo()
+  changeHeaderStyle()
+  logout()
 });
-var btnSair = document.querySelector('#btnSair');
-
-btnSair.addEventListener('click', function (event) {
-  logoff();
-});
-
-// Esconder login-result-popup
-// document.querySelector('.popup.logout-result .close-btn').addEventListener('click', function () {
-//   document.querySelector('.popup.logout-result').classList.remove('active')
-// });
 
 function loadInfo () {
   const userData = JSON.parse(sessionStorage.getItem('userData'));
-  console.log(userData);
 
   var fullName = userData.nome + ' ' + userData.sobrenome;
   var name = userData.nome;

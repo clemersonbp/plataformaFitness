@@ -1,18 +1,33 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js';
-import { login, logoff, passwordRecovery, searchLocal, searchProfessionals } from './firebase.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+import {
+  login,
+  logoff,
+  passwordRecovery,
+  searchLocal,
+  searchProfessionals,
+} from "./firebase.js";
+
+var userLoggedIn = false;
 
 $(document).ready(function () {
   // only way that i got to work was putting the config in here, onAuthStateChanged works similar to an observable,
   // but calling the function on another file was returning always null, :(
   var config = {
-    apiKey: 'AIzaSyBHSpjnyCTnvrJXjDqvm1KrEGMay8fE_Cw',
-    authDomain: 'plataformafitness-6cfdf.firebaseapp.com',
-    databaseURL: 'https://plataformafitness-6cfdf-default-rtdb.firebaseio.com',
-    projectId: 'plataformafitness-6cfdf',
-    storageBucket: 'plataformafitness-6cfdf.appspot.com',
-    messagingSenderId: '479104423229',
-    appId: '1:479104423229:web:b31bbd3d56d72a9a962154'
+    apiKey: "AIzaSyBHSpjnyCTnvrJXjDqvm1KrEGMay8fE_Cw",
+    authDomain: "plataformafitness-6cfdf.firebaseapp.com",
+    databaseURL: "https://plataformafitness-6cfdf-default-rtdb.firebaseio.com",
+    projectId: "plataformafitness-6cfdf",
+    storageBucket: "plataformafitness-6cfdf.appspot.com",
+    messagingSenderId: "479104423229",
+    appId: "1:479104423229:web:b31bbd3d56d72a9a962154",
   };
 
   const firebaseApp = initializeApp(config);
@@ -24,194 +39,224 @@ $(document).ready(function () {
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
       // console.log(loggedIn);
-      console.log('loguei');
-      // loggedIn = true
-      sessionStorage.setItem('uid', JSON.stringify(uid));
+      console.log("loguei");
+      sessionStorage.setItem("uid", JSON.stringify(uid));
       changeHeaderStyle();
     } else {
       // User is signed out
-      console.log('n loguei');
-      // loggedIn = false
+      console.log("n loguei");
     }
   });
-
-  showLoginPopup()
-  loginPopup()
-  hideLoginPopup()
-  hideLoginResultPopup()
-  showPasswordRecoveryPopup()
-  hidePasswordRecoveryPopup()
-  hidePassowordRecoveryResultPopup()
-  passwordReset()
-  logout()
 });
+
+const uid = sessionStorage.getItem("uid");
 
 // LOGOFF SYSTEM
-function logout() {
-  var btnSair = document.querySelector('#btnSair');
-  
-  btnSair.addEventListener('click', function (event) {
-    logoff();
-  });
+export function logout() {
+  document
+    .querySelector("#btnSair")
+    .addEventListener("click", function (event) {
+      logoff();
+    });
 }
+logout();
 
 var isPasswordPopupActive = false;
+var isLoginPopupActive = false;
 
 // Exibir login-popup
-function showLoginPopup() {
-  document.querySelector('#show-login').addEventListener('click', function () {
-    if (isPasswordPopupActive == false) {
-      document.querySelector('.popup').classList.add('active');
-    } else {
-      document.querySelector('.popup.password-recovery').classList.remove('active');
-      isPasswordPopupActive = false;
-    }
-  });
+export function showLoginPopup() {
+  if (!uid) {
+    var btnLogin = document.querySelector("#show-login");
+    btnLogin.addEventListener("click", function () {
+      isLoginPopupActive = true
+      if (isPasswordPopupActive == false) {
+        document.querySelector(".popup").classList.add("active");
+      } else {
+        document
+          .querySelector(".popup.password-recovery")
+          .classList.remove("active");
+        isPasswordPopupActive = false;
+      }
+    });
+  }
 }
+showLoginPopup();
 
 // Esconder login-popup
-function hideLoginPopup() {
-  document.querySelector('.popup .close-btn').addEventListener('click', function () {
-    document.querySelector('#email').value = '';
-    document.querySelector('#password').value = '';
-    document.querySelector('.popup').classList.remove('active');
-  });
+export function hideLoginPopup() {
+  document
+    .querySelector(".popup .close-btn")
+    .addEventListener("click", function () {
+      document.querySelector("#email").value = "";
+      document.querySelector("#password").value = "";
+      document.querySelector(".popup").classList.remove("active");
+      isLoginPopupActive = false
+    });
 }
+hideLoginPopup();
 
 // Esconder login-result-popup
-function hideLoginResultPopup() {
-  document.querySelector('.popup.login-result .close-btn').addEventListener('click', function () {
-    document.querySelector('.popup.login-result').classList.remove('active');
-    document.querySelector('#login-result-msg').innerHTML = '';
-  });
+export function hideLoginResultPopup() {
+  if (!uid && isLoginPopupActive) {
+    document
+      .querySelector(".popup.login-result .close-btn")
+      .addEventListener("click", function () {
+        document
+          .querySelector(".popup.login-result")
+          .classList.remove("active");
+        document.querySelector("#login-result-msg").innerHTML = "";
+      });
+  }
 }
+hideLoginResultPopup();
 
 // Exibir password-recovery-popup
-function showPasswordRecoveryPopup() {
-  document.querySelector('#forgot-password').addEventListener('click', function () {
-    document.querySelector('#email').value = '';
-    document.querySelector('#password').value = '';
-    document.querySelector('.popup').classList.remove('active');
-    document.querySelector('.popup.password-recovery').classList.add('active');
-    isPasswordPopupActive = true;
-  });
+export function showPasswordRecoveryPopup() {
+  if (!uid && isLoginPopupActive) {
+    document
+      .querySelector("#forgot-password")
+      .addEventListener("click", function () {
+        document.querySelector("#email").value = "";
+        document.querySelector("#password").value = "";
+        document.querySelector(".popup").classList.remove("active");
+        document
+          .querySelector(".popup.password-recovery")
+          .classList.add("active");
+        isPasswordPopupActive = true;
+      });
+  }
 }
+showPasswordRecoveryPopup();
 
 // Esconder password-recovery-popup
-function hidePasswordRecoveryPopup() {
-  document.querySelector('.popup.password-recovery .close-btn').addEventListener('click', function () {
-    document.querySelector('#recovery-email').value = '';
-    document.querySelector('.popup.password-recovery').classList.remove('active');
-    isPasswordPopupActive = false;
-  });
+export function hidePasswordRecoveryPopup() {
+  if (!uid && isLoginPopupActive) {
+    document
+      .querySelector(".popup.password-recovery .close-btn")
+      .addEventListener("click", function () {
+        document.querySelector("#recovery-email").value = "";
+        document
+          .querySelector(".popup.password-recovery")
+          .classList.remove("active");
+        isPasswordPopupActive = false;
+      });
+  }
 }
+hidePasswordRecoveryPopup();
 
 // Esconder password-recovery-result-popup
-function hidePassowordRecoveryResultPopup() {
-  document.querySelector('.popup.password-recovery-result .close-btn').addEventListener('click', function () {
-    document.querySelector('#recovery-result-msg').innerHTML = '';
-    document.querySelector('.popup.password-recovery-result').classList.remove('active');
-  });
+export function hidePasswordRecoveryResultPopup() {
+  if (!uid && isLoginPopupActive) {
+    document
+      .querySelector(".popup.password-recovery-result .close-btn")
+      .addEventListener("click", function () {
+        document.querySelector("#recovery-result-msg").innerHTML = "";
+        document
+          .querySelector(".popup.password-recovery-result")
+          .classList.remove("active");
+      });
+  }
 }
+hidePasswordRecoveryResultPopup();
 
 // AUTHENTICATION SYSTEM
-function loginPopup() {
-  var btnEntrar = document.querySelector('#btnEntrar');
-  // var spanUserInfo = document.querySelector("#userInfo");
-  
-  btnEntrar.addEventListener('click', function (event) {
-    event.preventDefault();
-    const formData = {
-      email: document.querySelector('#email').value,
-      senha: document.querySelector('#password').value
-    };
-    // console.log(formData);
-    login(formData);
-  });
+export function loginPopup() {
+  if (!uid && isLoginPopupActive) {
+    var btnEntrar = document.querySelector("#btnEntrar");
+    // var spanUserInfo = document.querySelector("#userInfo");
+
+    btnEntrar.addEventListener("click", function (event) {
+      event.preventDefault();
+      const formData = {
+        email: document.querySelector("#email").value,
+        senha: document.querySelector("#password").value,
+      };
+      // console.log(formData);
+      login(formData);
+    });
+  }
 }
+loginPopup();
 
 // RESET PASSWORD
-function passwordReset() {
-  var sendRecovery = document.querySelector('#btn-send-recovery');
-  sendRecovery.addEventListener('click', function (event) {
-    // event.preventDefault();
-    const email = document.querySelector('#recovery-email').value;
-  
-    // console.log(email);
-    passwordRecovery(email);
-  });
+export function passwordReset() {
+  if (!uid && isLoginPopupActive) {
+    var sendRecovery = document.querySelector("#btn-send-recovery");
+    sendRecovery.addEventListener("click", function (event) {
+      // event.preventDefault();
+      const email = document.querySelector("#recovery-email").value;
+
+      // console.log(email);
+      passwordRecovery(email);
+    });
+  }
+}
+passwordReset();
+
+export function changeHeaderStyle() {
+  if (uid) {
+    $(".header__links").hide();
+    $(".header__links-loggedIn").show();
+    $(".header__links-loggedIn").css("display", "flex");
+
+    // GETS THE USER INFO
+
+    const userData = JSON.parse(sessionStorage.getItem("userData"));
+    // console.log('userData', userData);
+    var name = userData.nome;
+    // var fullName = userData.nome + ' ' + userData.sobrenome;
+    $("#clientName").text("Olá, " + name);
+  }
 }
 
-
-function changeHeaderStyle () {
-  $('.header__links').hide();
-  $('.header__links-loggedIn').show();
-  $('.header__links-loggedIn').css('display', 'flex');
-
-  console.log('entrei no changeHeaedr');
-
-  // GETS THE USER INFO
-
-  const userData = JSON.parse(sessionStorage.getItem('userData'));
-  console.log('userData', userData);
-  var name = userData.nome;
-  // var fullName = userData.nome + ' ' + userData.sobrenome;
-
-  $('#clientName').text('Olá, ' + name);
-}
-
-$('#btnProfile').click(function () {
+$("#btnProfile").click(function () {
   setTimeout(() => {
-    window.location.replace('perfilCliente.html');
+    window.location.replace("perfilCliente.html");
   }, 500);
 });
-
 
 //SEARCH
 //GET THE TIPE OF SERVICE, CHECK ON DB AND RETURN AVAILABLE CITIES TO SET THE OPTIONS AVAILABLE
-$('#tipo').find('option').click(function () {
+$("#tipo")
+  .find("option")
+  .click(function () {
+    //Clear the session storage to get new cities
+    sessionStorage.removeItem("availableCities");
+    removeOptions();
+    var optionSelected = $(this);
 
-  //Clear the session storage to get new cities
-  sessionStorage.removeItem('availableCities');
-  removeOptions();
-  var optionSelected = $(this);
+    var valueSelected = optionSelected.val();
+    var textSelected = optionSelected.text();
+    //sessionStorage.removeItem('availableCities');
+    searchLocal(valueSelected);
 
-  var valueSelected  = optionSelected.val();
-  var textSelected   = optionSelected.text();
-  //sessionStorage.removeItem('availableCities');
-  searchLocal(valueSelected);
+    setTimeout(() => {
+      const cities = JSON.parse(sessionStorage.getItem("availableCities"));
+      setAvailableOptions(cities);
+    }, 500);
+  });
 
-  setTimeout(() => {
-    const cities = JSON.parse(sessionStorage.getItem('availableCities'));
-  setAvailableOptions(cities)
-  }, 500);
- 
-  
-});
-
-
-$('#search').click(function () {
-  var tipo = $('select[name=tipo] option').filter(':selected').val()
-  var cidade = $('select[name=local] option').filter(':selected').val()
-  console.log(tipo,cidade);
+$("#search").click(function () {
+  var tipo = $("select[name=tipo] option").filter(":selected").val();
+  var cidade = $("select[name=local] option").filter(":selected").val();
+  console.log(tipo, cidade);
 
   searchProfessionals(tipo, cidade);
-
 });
 
-
-function setAvailableOptions(listCities){
-  listCities.forEach(city => {
-    $("#local").append($('<option>',{
-      value: city,
-      text: city
-    }))
+function setAvailableOptions(listCities) {
+  listCities.forEach((city) => {
+    $("#local").append(
+      $("<option>", {
+        value: city,
+        text: city,
+      })
+    );
   });
 }
 
-function removeOptions(){
+function removeOptions() {
   //$("#local option").remove();
   $("#local").html('<option value="">Selecione</option>');
 }
-
-

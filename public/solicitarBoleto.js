@@ -1,3 +1,5 @@
+import { changeHeaderStyle, logout, hideLoginResultPopup } from './index.js';
+
 const userData = JSON.parse(sessionStorage.getItem('userData'))
 const proData = JSON.parse(sessionStorage.getItem('profissionalSelecionado'))
 var selectedPlan = ''
@@ -5,7 +7,10 @@ var hiredPlanValue = ''
 const hiringData = []
 
 $(document).ready(function () {
-  loadInfo();
+  loadInfo()
+  changeHeaderStyle()
+  hideLoginResultPopup() 
+  logout()
 });
 
 function loadInfo() {

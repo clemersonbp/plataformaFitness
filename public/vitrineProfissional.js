@@ -1,7 +1,15 @@
-import { login, logoff, saveEditedProfile } from './firebase.js';
-
-$('.header__links').hide();
-$('.header__links-loggedIn').show();
+import { login, logoff, saveEditedProfile } from "./firebase.js";
+import {
+  changeHeaderStyle,
+  showLoginPopup,
+  hideLoginResultPopup,
+  showPasswordRecoveryPopup,
+  hidePasswordRecoveryPopup,
+  hidePasswordRecoveryResultPopup,
+  logout,
+  loginPopup,
+  passwordReset,
+} from "./index.js";
 
 function formataCPF(cpf) {
   // retira os caracteres indesejados
@@ -13,6 +21,15 @@ function formataCPF(cpf) {
 
 $(document).ready(function () {
   loadInfo();
+  changeHeaderStyle();
+  showLoginPopup();
+  hideLoginResultPopup();
+  showPasswordRecoveryPopup();
+  hidePasswordRecoveryPopup();
+  hidePasswordRecoveryResultPopup();
+  loginPopup();
+  passwordReset();
+  logout();
 });
 
 function loadInfo() {
