@@ -16,34 +16,73 @@ $(document).ready(function () {
 });
 
 function loadInfo() {
-  const userData = JSON.parse(sessionStorage.getItem('profissionalSelecionado'));
-  console.log('ProData', userData);
+  const proData = JSON.parse(sessionStorage.getItem('profissionalSelecionado'));
+  console.log('ProData', proData);
 
-  var fullName = userData.proName + ' ' + userData.sobrenome;
-  var name = userData.nome;
+  var fullName = proData.proName + ' ' + proData.sobrenome;
+  var name = proData.nome;
   $('#clientName').text('Olá, ' + name);
 
-  userData.cpf = formataCPF(userData.cpf);
+  proData.cpf = formataCPF(proData.cpf);
 
   $('#user-title-nome').text(fullName);
-  $('#user-title-email').text(userData.email);
-  $('#user-cep').text(userData.cep);
-  $('#user-address').text(userData.endereco);
-  $('#user-number').text(userData.numeroResid);
-  $('#user-city').text(userData.cidade);
-  $('#user-neighborhood').text(userData.proDistrict);
-  $('#user-state').text(userData.uf);
-  $('#about').text(userData.aboutMe);
-  $('#exp').text(userData.occupationArea);
-  $('#mensal').text(userData.planoMensal);
-  $('#trimestral').text(userData.planoTrimestral);
-  $('#semestral').text(userData.planoSemestral)
+  $('#user-title-email').text(proData.email);
+  $('#user-cref').text(proData.crefCadastrado);
+  $('#user-cep').text(proData.cep);
+  $('#user-address').text(proData.endereco);
+  $('#user-number').text(proData.numeroResid);
+  $('#user-city').text(proData.cidade);
+  $('#user-neighborhood').text(proData.proDistrict);
+  $('#user-state').text(proData.uf);
+  $('#about').text(proData.aboutMe);
+  $('#exp').text(proData.occupationArea);
+  $('#mensal').text(parseFloat(proData.planoMensal).toFixed(2))
+  $('#trimestral').text(parseFloat(proData.planoTrimestral).toFixed(2))
+  $('#semestral').text(parseFloat(proData.planoSemestral).toFixed(2))
 
-  console.log(userData.telefone);
-  const numero = userData.telefone
-  const numeroString = 'https://wa.me/' + numero
-  var linkWA = document.querySelector('.linkWA');
-  linkWA.setAttribute('href', numeroString);
+  if (proData.whatsApp !== (null || undefined)) {
+    const proWhatsApp = 'https://wa.me/' + proData.whatsApp
+    var linkWA = document.querySelector('.linkWA');
+    linkWA.setAttribute('href', proWhatsApp);
+  } else {
+    var linkWA = document.querySelector('.linkWA');
+    linkWA.setAttribute('disabled', true);
+  }
+  if (proData.telegram) {
+    const proTelegram = 'https://t.me/' + proData.telegram
+    var linkTelegram = document.querySelector('.linkTelegram');
+    linkTelegram.setAttribute('href', proTelegram);
+  } else {
+    var linkTelegram = document.querySelector('.linkTelegram');
+    linkTelegram.setAttribute('disabled', true);
+  }
+  if (proData.instagram) {
+    const proInstagram = 'https://instagram.com/' + proData.instagram
+    var linkInstagram = document.querySelector('.linkInstagram');
+    linkInstagram.setAttribute('href', proInstagram);
+  } else {
+    var linkInstagram = document.querySelector('.linkInstagram');
+    linkInstagram.setAttribute('disabled', true);
+  }
+  if (proData.facebook) {
+    const proFacebook = 'https://facebook.com/' + proData.facebook
+    var linkFacebook = document.querySelector('.linkFacebook');
+    linkFacebook.setAttribute('href', proFacebook);
+  } else {
+    var linkFacebook = document.querySelector('.linkFacebook');
+    linkFacebook.setAttribute('disabled', true);
+  }
+  if (proData.twitter) {
+    const proTwitter = 'https://twitter.com/' + proData.twitter
+    var linkTwitter = document.querySelector('.linkTwitter');
+    linkTwitter.setAttribute('href', proTwitter);
+  } else {
+    var linkTwitter = document.querySelector('.linkTwitter');
+    linkTwitter.setAttribute('disabled', true);
+  }
+  const proEmail = 'mailto:' + proData.email + '?subject=Plataforma%20Fitness&body=Olá!'
+  var linkEmail = document.querySelector('.linkEmail');
+  linkEmail.setAttribute('href', proEmail);
 }
 
 $('#sendMessage').click(function () {

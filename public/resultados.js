@@ -21,6 +21,7 @@
 var searchResults;
 $(document).ready(function(){
   var searchResults = JSON.parse(sessionStorage.getItem('availableProfessionals'));
+  // console.log('searchResults', searchResults);
   fillPage(searchResults);
   $(".linkVitrine").find('span').click(function () {
     var nome = $(this).text()
