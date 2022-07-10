@@ -37,12 +37,12 @@ $(document).ready(function () {
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
       // console.log(loggedIn);
-      console.log("loguei");
+      // console.log("loguei");
       sessionStorage.setItem("uid", JSON.stringify(uid));
       changeHeaderStyle();
     } else {
       // User is signed out
-      console.log("n loguei");
+      // console.log("n loguei");
     }
   });
 });

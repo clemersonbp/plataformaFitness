@@ -77,7 +77,7 @@ function cadastrar() {
       experienciaCad: experiencia.value
     });
 
-    console.log(listaUserProfissional);
+    // console.log(listaUserProfissional);
 
     //CREATES DE DOCUMENT ON DATABASE TEST
     //CALL A SEPARATE CLASS ON THE FIREBASE JS BEFORE SENDING TO THE DB

@@ -134,7 +134,7 @@ function cadastrar() {
       ufCad: uf.value
     };
 
-    console.log(listaUser)
+    // console.log(listaUser)
 
     //CREATES DE DOCUMENT ON DATABASE TEST
     //CALL A SEPARATE CLASS ON THE FIREBASE JS BEFORE SENDING TO THE DB

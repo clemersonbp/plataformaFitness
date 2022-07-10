@@ -27,7 +27,7 @@ btnSair.addEventListener('click', function (event) {
 
 function loadInfo() {
   const userData = JSON.parse(sessionStorage.getItem('userData'));
-  console.log(userData);
+  // console.log(userData);
 
   var fullName = userData.nome + ' ' + userData.sobrenome;
   var name = userData.nome;

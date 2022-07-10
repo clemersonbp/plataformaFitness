@@ -48,9 +48,9 @@ export function createClient (clientData) {
       writeDocument(newUserDocument, clientData);
 
       // Preciso remover a senha, pois não é necessário salvar no firestore
-      console.log(clientsCollection);
+      // console.log(clientsCollection);
       // clientsCollection.doc(uid).set(clientData);
-      console.log('Conta criada com sucesso');
+      // console.log('Conta criada com sucesso');
     })
     .catch(error => {
       if (error.code == 'auth/email-already-in-use') {

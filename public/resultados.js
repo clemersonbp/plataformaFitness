@@ -41,7 +41,7 @@ $(document).ready(function(){
 
 function fillPage(searchResults){
 $('.search-results-value').html(searchResults.length);
-console.log(searchResults);
+// console.log(searchResults);
 searchResults.forEach(professional => {
 
   // card e seus elementos
@@ -90,22 +90,23 @@ searchResults.forEach(professional => {
   var barra = document.createElement('div');
   barra.setAttribute('class', 'barra');
   cardProDataEvaluation.appendChild(barra);
+  // cardProDataEvaluation.appendChild(barra);
 
   // div barra > span bg
-  var bg = document.createElement('span');
-  bg.setAttribute('class', 'bg');
-  barra.appendChild(bg);
+  // var bg = document.createElement('span');
+  // bg.setAttribute('class', 'bg');
+  // barra.appendChild(bg);
 
   // div barra > div estrelas
-  var estrelas = document.createElement('div');
-  estrelas.setAttribute('class', 'estrelas');
-  barra.appendChild(estrelas);
+  // var estrelas = document.createElement('div');
+  // estrelas.setAttribute('class', 'estrelas');
+  // barra.appendChild(estrelas);
 
   // div barra > div estrelas > span star
-  var star = document.createElement('span');
-  star.setAttribute('class', 'star');
-  star.setAttribute('id', 'stella');
-  barra.appendChild(star);
+  // var star = document.createElement('span');
+  // star.setAttribute('class', 'star');
+  // star.setAttribute('id', 'stella');
+  // barra.appendChild(star);
 
   // div sem classe
   var div = document.createElement('div');
@@ -177,14 +178,11 @@ searchResults.forEach(professional => {
   
   // var userScore = professional.evaluationTotal;
   var userScore = 5;
-  console.log('userScore', userScore);
   
   // var usersEvaluationsQtty = professional.evaluationsQtty;
   var usersEvaluationsQtty = 1;
-  console.log(usersEvaluationsQtty);
   
   var userRating = (userScore / usersEvaluationsQtty) * 10 + '%';
-  console.log(userRating);
 
   $('#stella').css('--percent', userRating);
 
@@ -208,8 +206,8 @@ searchResults.forEach(professional => {
   }
   
   cardName.innerHTML = professional.proName + " " + professional.sobrenome;
-  evaluationQtty.innerHTML = usersEvaluationsQtty;
-  evaluationText.innerHTML = usersEvaluationsText;
+  // evaluationQtty.innerHTML = usersEvaluationsQtty;
+  // evaluationText.innerHTML = usersEvaluationsText;
   cardServiceValue.innerHTML = professional.serviceValue;
   cardDistrict.innerHTML = professional.proDistrict + ', \n';
   cardCity.innerHTML = professional.proCity;
