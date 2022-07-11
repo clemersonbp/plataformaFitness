@@ -180,7 +180,7 @@ loginPopup();
 
 // RESET PASSWORD
 export function passwordReset() {
-  if (!uid && isLoginPopupActive) {
+  if (!uid && !isLoginPopupActive) {
     var sendRecovery = document.querySelector("#btn-send-recovery");
     sendRecovery.addEventListener("click", function (event) {
       // event.preventDefault();
