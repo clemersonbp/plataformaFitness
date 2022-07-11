@@ -1,6 +1,8 @@
 //IMPORT FUNCTIONS FROM FIREBASE/DATABASE FILE.
 import { createProfessionalEsp } from "./firebase.js"
 
+let servicos = 'Elaboração de Treinos'
+
 let cref = document.querySelector('#cref')
 let validCref = false
 
@@ -70,7 +72,7 @@ function cadastrar() {
     
     Object.assign(listaUserProfissional, {
       crefCad: cref.value,
-      servico: 'Elaboração de Treinos',
+      servicoCad: servicos,
       planoMensalCad: planoMensal.value,
       planoTrimestralCad: planoTrimestral.value,
       planoSemestralCad: planoSemestral.value,

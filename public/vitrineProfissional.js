@@ -1,4 +1,3 @@
-import { login, logoff, saveEditedProfile } from "./firebase.js";
 import {
   changeHeaderStyle,
   showLoginPopup,

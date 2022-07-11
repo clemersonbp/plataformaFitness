@@ -70,9 +70,6 @@ let validCidade = false
 let uf = document.querySelector('#uf')
 let validUf = false
 
-// let msgError = document.querySelector('#msgError')
-// let msgSuccess = document.querySelector('#msgSuccess')
-
 nome.addEventListener('keyup', () => {
   if (nome.value) {
     validNome = true
@@ -169,8 +166,6 @@ function cadastrar() {
     && validCep && validBairro && validCidade
     && validUf && validInstFinanceira && validAgencia && validConta && validPix) {
 
-
-    //let listaUserProfissionalLocal = JSON.parse(localStorage.getItem('listaUserProfissionalLocal') || '[]')
     let listaUserProfissionalLocal = {}
     listaUserProfissionalLocal =
       {

@@ -348,6 +348,7 @@ export function searchProfessionals(tipo, cidade){
             proCity: user.cidadeCad,
             uf: user.ufCad,
             occupationArea:user.experienciaCad,
+            service: user.serviceCad,
             serviceValue: user.planoMensalCad,
             aboutMe: user.sobreMimCad,
             planoMensal: user.planoMensalCad,
